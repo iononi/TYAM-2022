@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 public class MainActivity extends Activity {
 
     private RadioButton checkedDegreeRadioButton, checkedFunctionRadioButton;
+    private RadioGroup functionOptions, degreeOptions;
+    private ImageView degreeImage;
     private TextView result;
 
     private static double sin(double angle) {
@@ -62,10 +64,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // load the activity_main.xml content
 
-        ImageView degreeImage = findViewById(R.id.angulo); // find the ImageView to place the angle image
+        degreeImage = findViewById(R.id.angulo); // find the ImageView to place the angle image
         result = findViewById(R.id.resultado); // find the TextView called resultado
-        RadioGroup functionOptions = findViewById(R.id.opciones_funciones); // find the radio group of functions
-        RadioGroup degreeOptions = findViewById(R.id.opciones_grados); // find the radio group of degrees
+        functionOptions = findViewById(R.id.opciones_funciones); // find the radio group of functions
+        degreeOptions = findViewById(R.id.opciones_grados); // find the radio group of degrees
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         functionOptions.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
