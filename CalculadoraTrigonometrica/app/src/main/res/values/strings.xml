@@ -10,4 +10,6 @@
     <string name="ciento_ochenta">180</string>
     <string name="angulo_seleccionado">Imagen correspondiente al ángulo seleccionado</string>
     <string name="resultado">Resultado:</string>
+    <string name="seleccionar_angulo">Seleccione un ángulo</string>
+    <string name="seleccionar_funcion">Seleccione una función</string>
 </resources>
