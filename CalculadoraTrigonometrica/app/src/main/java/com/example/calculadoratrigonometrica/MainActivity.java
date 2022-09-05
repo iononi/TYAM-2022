@@ -1,6 +1,5 @@
 package com.example.calculadoratrigonometrica;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView degreeImage;
     private TextView result;
     private FormViewModel formViewModel;
-    private ImageView edtDegreeImage;
     private static final String RESULT = "result";
 
     private static double sin(double angle) {
