@@ -10,13 +10,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private RadioButton checkedDegreeRadioButton, checkedFunctionRadioButton;
     private RadioGroup functionOptions, degreeOptions;
     private ImageView degreeImage;
     private TextView result;
+    private FormViewModel formViewModel;
+    private ImageView edtDegreeImage;
     private static final String RESULT = "result";
 
     private static double sin(double angle) {
@@ -70,6 +74,7 @@ public class MainActivity extends Activity {
         result = findViewById(R.id.resultado); // find the TextView called resultado
         functionOptions = findViewById(R.id.opciones_funciones); // find the radio group of functions
         degreeOptions = findViewById(R.id.opciones_grados); // find the radio group of degrees
+        formViewModel = new ViewModelProvider(this).get(FormViewModel.class);
     }
 
     @Override
@@ -127,6 +132,7 @@ public class MainActivity extends Activity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(RESULT, result.getText().toString());
+        formViewModel.setDegreeImage(degreeImage.getDrawable());
     }
 
     @Override
@@ -134,5 +140,6 @@ public class MainActivity extends Activity {
         super.onRestoreInstanceState(savedInstanceState);
         String finalResult = savedInstanceState.getString(RESULT);
         result.setText(finalResult);
+        degreeImage.setImageDrawable(formViewModel.getDegreeImage());
     }
 }
