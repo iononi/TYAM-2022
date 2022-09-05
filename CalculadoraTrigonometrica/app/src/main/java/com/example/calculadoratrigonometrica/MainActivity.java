@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class MainActivity extends Activity {
@@ -16,6 +17,7 @@ public class MainActivity extends Activity {
     private RadioGroup functionOptions, degreeOptions;
     private ImageView degreeImage;
     private TextView result;
+    private static final String RESULT = "result";
 
     private static double sin(double angle) {
         return Math.sin( angle );
@@ -119,5 +121,18 @@ public class MainActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(RESULT, result.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String finalResult = savedInstanceState.getString(RESULT);
+        result.setText(finalResult);
     }
 }
