@@ -14,6 +14,7 @@ en orden. Cada vez que se cree una nueva actividad, deberá crearse su
 carpeta correspondiente.
 
 ## Actualizaciones
-Para realizar cambios en el código, estos deberán ser subidos en la
-sección de ***Pull requests*** para su aprobación y posterior
-incorporación al proyecto.
+Para realizar cambios en el código, estos deberán ser realizados en la
+branch *new-feature*. Solo cuando se haya verificado que el código
+cumple con las características necesarias y funcione correctamente se
+hará el merge a la branch *main*.
