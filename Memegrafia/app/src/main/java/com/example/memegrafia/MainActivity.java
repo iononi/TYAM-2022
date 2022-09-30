@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -33,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar () != null) {
             getSupportActionBar ().setTitle ("Memegrafia");
         }
+        FragmentListado f = new  FragmentListado ();
+
+        getSupportFragmentManager ()
+                .beginTransaction ()
+                .add (R.id.myContainer, f)
+                .setTransition (FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit ();
 
     }
 }
