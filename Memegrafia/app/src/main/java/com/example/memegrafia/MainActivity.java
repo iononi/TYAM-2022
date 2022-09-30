@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.example.memegrafia.databinding.ActivityMainBinding;
 
 import com.example.memegrafia.Fragments.Details;
@@ -28,13 +27,6 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar () != null) {
             getSupportActionBar ().setTitle ("Memegrafia");
         }
-        FragmentListado f = new  FragmentListado ();
-
-        getSupportFragmentManager ()
-                .beginTransaction ()
-                .add (R.id.myContainer, f)
-                .setTransition (FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit ();
 
         MemeList memeList = new MemeList();
         memeList.setMemeSelectedListener(position -> {
