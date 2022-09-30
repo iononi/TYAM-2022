@@ -1,6 +1,5 @@
 package com.example.memegrafia.Fragments;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +47,7 @@ public class Details extends Fragment {
         if (activity == null)
             return;
 
-        String [] imagesArray = getResources ().getStringArray (R.array.images);
+        //String [] imagesArray = getResources ().getStringArray (R.array.images);
         String [] namesArray = getResources ().getStringArray (R.array.names);
         String [] infoArray = getResources().getStringArray (R.array.info);
 
@@ -56,22 +55,46 @@ public class Details extends Fragment {
         if (memeTitle != null)
             memeTitle.setText (namesArray [position]);
 
-        ImageView memeImage = activity.findViewById (R.id.memeImage);
-        if (memeImage != null) {
-            Integer drawableId = (Integer) memeImage.getTag ();
-            drawableId = (drawableId == null) ? 0 : drawableId;
-            switch (drawableId) {
-                case R.drawable.cereal_guy:
-                    memeImage.setImageResource (R.drawable.cereal_guy);
-                    break;
-                case R.drawable.f_yeah:
-                    memeImage.setImageResource (R.drawable.f_yeah);
-                    break;
-            }
-        }
-
-        for (String image: imagesArray) {
-            System.out.println(image);
+        // dependiendo de la posición del elemento seleccionado, cargamos la imagen
+        // correspondiente desde los recursos del proyecto
+        switch (position) {
+            // debe haber una forma más dinámica de buscar el recurso
+            case 0:
+                detailsBinding.memeImage.setImageResource (R.drawable.cereal_guy);
+                break;
+            case 1:
+                detailsBinding.memeImage.setImageResource (R.drawable.f_yeah);
+                break;
+            case 2:
+                detailsBinding.memeImage.setImageResource (R.drawable.forever_alone);
+                break;
+            case 3:
+                detailsBinding.memeImage.setImageResource (R.drawable.freddie_mercury);
+                break;
+            case 4:
+                detailsBinding.memeImage.setImageResource (R.drawable.lol_guy);
+                break;
+            case 5:
+                detailsBinding.memeImage.setImageResource (R.drawable.neil_degrasse_tyson);
+                break;
+            case 6:
+                detailsBinding.memeImage.setImageResource (R.drawable.oh_crap);
+                break;
+            case 7:
+                detailsBinding.memeImage.setImageResource (R.drawable.okay);
+                break;
+            case 8:
+                detailsBinding.memeImage.setImageResource (R.drawable.rage_guy);
+                break;
+            case 9:
+                detailsBinding.memeImage.setImageResource (R.drawable.troll_face);
+                break;
+            case 10:
+                detailsBinding.memeImage.setImageResource (R.drawable.y_u_no_guy);
+                break;
+            case 11:
+                detailsBinding.memeImage.setImageResource (R.drawable.yao_ming);
+                break;
         }
 
         TextView memeDescription = activity.findViewById (R.id.memeDescription);
