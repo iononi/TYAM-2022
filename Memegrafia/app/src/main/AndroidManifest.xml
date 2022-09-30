@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".DetailsActivity" android:screenOrientation="sensor"/>
+
     </application>
 
 </manifest>
