@@ -1,9 +1,11 @@
 package com.example.memegrafia.Fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,12 +50,32 @@ public class Details extends Fragment {
 
         String [] imagesArray = getResources ().getStringArray (R.array.images);
         String [] namesArray = getResources ().getStringArray (R.array.names);
-        String [] infoArray = getResources().getStringArray(R.array.info);
+        String [] infoArray = getResources().getStringArray (R.array.info);
 
         TextView memeTitle = activity.findViewById (R.id.memeTitle);
-        if (memeTitle != null) memeTitle.setText (namesArray [position]);
+        if (memeTitle != null)
+            memeTitle.setText (namesArray [position]);
+
+        ImageView memeImage = activity.findViewById (R.id.memeImage);
+        if (memeImage != null) {
+            Integer drawableId = (Integer) memeImage.getTag ();
+            drawableId = (drawableId == null) ? 0 : drawableId;
+            switch (drawableId) {
+                case R.drawable.cereal_guy:
+                    memeImage.setImageResource (R.drawable.cereal_guy);
+                    break;
+                case R.drawable.f_yeah:
+                    memeImage.setImageResource (R.drawable.f_yeah);
+                    break;
+            }
+        }
+
+        for (String image: imagesArray) {
+            System.out.println(image);
+        }
 
         TextView memeDescription = activity.findViewById (R.id.memeDescription);
-        if (memeDescription != null) memeDescription.setText (infoArray [position]);
+        if (memeDescription != null)
+            memeDescription.setText (infoArray [position]);
     }
 }
