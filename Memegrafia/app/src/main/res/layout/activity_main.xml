@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:background="?colorPrimary"
         android:layout_height="?actionBarSize"
-        app:title="Memegrafia"/>
+        app:title="@string/app_name"/>
 
     <FrameLayout
         android:id="@+id/myContainer"

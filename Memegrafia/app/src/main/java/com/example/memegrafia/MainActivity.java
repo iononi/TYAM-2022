@@ -1,23 +1,17 @@
 package com.example.memegrafia;
-import android.nfc.Tag;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
-
 
 
 import com.example.memegrafia.databinding.ActivityMainBinding;
+
+import com.example.memegrafia.Fragments.Details;
+import com.example.memegrafia.Fragments.MemeList;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -42,5 +36,28 @@ public class MainActivity extends AppCompatActivity {
                 .setTransition (FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit ();
 
+        MemeList memeList = new MemeList();
+        memeList.setMemeSelectedListener(position -> {
+            FrameLayout layout = findViewById (R.id.contentDetails);
+            System.out.println(layout);
+
+            if (layout != null) {
+                getSupportFragmentManager ()
+                        .beginTransaction ()
+                        .replace (R.id.contentDetails, new Details (position))
+                        .setTransition (FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit ();
+            } else {
+                Intent intent = new Intent (this, DetailsActivity.class);
+                intent.putExtra ("POSITION", position);
+                startActivity (intent);
+            }
+        });
+
+        getSupportFragmentManager ()
+                .beginTransaction ()
+                .add (R.id.myContainer, memeList)
+                .setTransition (FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit ();
     }
 }
