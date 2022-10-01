@@ -21,17 +21,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         var view = binding.getRoot();
-        setContentView(view);
+        setContentView(view); // carga la vista principal
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar () != null) {
-            getSupportActionBar ().setTitle ("Memegrafia");
+            getSupportActionBar ().setTitle ("Memegrafia"); // coloca el titulo en la ActionBar
         }
 
+        // esto se ejecuta cuando se selecciona un meme
         MemeList memeList = new MemeList();
         memeList.setMemeSelectedListener(position -> {
             FrameLayout layout = findViewById (R.id.contentDetails);
-            System.out.println(layout);
+//            System.out.println(layout);
 
             if (layout != null) {
                 getSupportFragmentManager ()
