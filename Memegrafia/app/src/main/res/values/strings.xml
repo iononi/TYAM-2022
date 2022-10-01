@@ -2,6 +2,7 @@
 
     <string name="app_name">Memegrafia</string>
     <string name="memeName">Nombre del meme</string>
+    <string name="meme_image">memeImage</string>
 
     <array name="images">
         <item>@drawable/cereal_guy</item>
