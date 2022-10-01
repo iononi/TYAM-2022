@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.memegrafia.R;
-import com.example.memegrafia.databinding.FragmentDetailsBinding;
 
 public class Details extends Fragment {
 
@@ -41,64 +40,66 @@ public class Details extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FragmentDetailsBinding detailsBinding = FragmentDetailsBinding.inflate ( getLayoutInflater() );
 
-        FragmentActivity activity = getActivity ();
+        FragmentActivity activity = getActivity();
         if (activity == null)
             return;
 
         //String [] imagesArray = getResources ().getStringArray (R.array.images);
-        String [] namesArray = getResources ().getStringArray (R.array.names);
-        String [] infoArray = getResources().getStringArray (R.array.info);
+        String[] namesArray = getResources().getStringArray(R.array.names);
+        String[] infoArray = getResources().getStringArray(R.array.info);
 
-        TextView memeTitle = activity.findViewById (R.id.memeTitle);
+        TextView memeTitle = activity.findViewById(R.id.memeTitle);
         if (memeTitle != null)
-            memeTitle.setText (namesArray [position]);
+            memeTitle.setText(namesArray[position]);
 
+        ImageView memeImage = activity.findViewById(R.id.memeImage);
         // dependiendo de la posición del elemento seleccionado, cargamos la imagen
         // correspondiente desde los recursos del proyecto
-        switch (position) {
-            // debe haber una forma más dinámica de buscar el recurso
-            case 0:
-                detailsBinding.memeImage.setImageResource (R.drawable.cereal_guy);
-                break;
-            case 1:
-                detailsBinding.memeImage.setImageResource (R.drawable.f_yeah);
-                break;
-            case 2:
-                detailsBinding.memeImage.setImageResource (R.drawable.forever_alone);
-                break;
-            case 3:
-                detailsBinding.memeImage.setImageResource (R.drawable.freddie_mercury);
-                break;
-            case 4:
-                detailsBinding.memeImage.setImageResource (R.drawable.lol_guy);
-                break;
-            case 5:
-                detailsBinding.memeImage.setImageResource (R.drawable.neil_degrasse_tyson);
-                break;
-            case 6:
-                detailsBinding.memeImage.setImageResource (R.drawable.oh_crap);
-                break;
-            case 7:
-                detailsBinding.memeImage.setImageResource (R.drawable.okay);
-                break;
-            case 8:
-                detailsBinding.memeImage.setImageResource (R.drawable.rage_guy);
-                break;
-            case 9:
-                detailsBinding.memeImage.setImageResource (R.drawable.troll_face);
-                break;
-            case 10:
-                detailsBinding.memeImage.setImageResource (R.drawable.y_u_no_guy);
-                break;
-            case 11:
-                detailsBinding.memeImage.setImageResource (R.drawable.yao_ming);
-                break;
-        }
+        if (memeImage != null) {
+            switch (position) {
+                // debe haber una forma más dinámica de buscar el recurso
+                case 0:
+                    memeImage.setImageResource(R.drawable.cereal_guy);
+                    break;
+                case 1:
+                    memeImage.setImageResource(R.drawable.f_yeah);
+                    break;
+                case 2:
+                    memeImage.setImageResource(R.drawable.forever_alone);
+                    break;
+                case 3:
+                    memeImage.setImageResource(R.drawable.freddie_mercury);
+                    break;
+                case 4:
+                    memeImage.setImageResource(R.drawable.lol_guy);
+                    break;
+                case 5:
+                    memeImage.setImageResource(R.drawable.neil_degrasse_tyson);
+                    break;
+                case 6:
+                    memeImage.setImageResource(R.drawable.oh_crap);
+                    break;
+                case 7:
+                    memeImage.setImageResource(R.drawable.okay);
+                    break;
+                case 8:
+                    memeImage.setImageResource(R.drawable.rage_guy);
+                    break;
+                case 9:
+                    memeImage.setImageResource(R.drawable.troll_face);
+                    break;
+                case 10:
+                    memeImage.setImageResource(R.drawable.y_u_no_guy);
+                    break;
+                case 11:
+                    memeImage.setImageResource(R.drawable.yao_ming);
+                    break;
+            }
 
-        TextView memeDescription = activity.findViewById (R.id.memeDescription);
-        if (memeDescription != null)
-            memeDescription.setText (infoArray [position]);
+            TextView memeDescription = activity.findViewById(R.id.memeDescription);
+            if (memeDescription != null)
+                memeDescription.setText(infoArray[position]);
+        }
     }
 }
