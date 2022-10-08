@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,10 +37,11 @@ public class LoremFragment extends Fragment {
         return inflater.inflate(R.layout.fragments_ui,container,false);
     }
 
-    public void OnViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.rvElements);
+        recyclerView.addItemDecoration (new DividerItemDecoration(view.getContext (), DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator (new DefaultItemAnimator());
         recyclerView.setLayoutManager (new LinearLayoutManager(view.getContext ()));
 
