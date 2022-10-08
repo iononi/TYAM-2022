@@ -14,8 +14,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,10 +42,15 @@ public class LoremFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        FragmentActivity activity = getActivity ();
+        if (activity == null) return;
+
         recyclerView = view.findViewById(R.id.rvElements);
         recyclerView.addItemDecoration (new DividerItemDecoration(view.getContext (), DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator (new DefaultItemAnimator());
         recyclerView.setLayoutManager (new LinearLayoutManager(view.getContext ()));
+        //recyclerView.setLayoutManager(new GridLayoutManager(getContext (),
+         //       2, GridLayoutManager.VERTICAL, false));
 
         SWApiService service = Utils.createService();
 
