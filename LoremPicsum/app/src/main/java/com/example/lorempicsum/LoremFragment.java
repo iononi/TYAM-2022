@@ -1,16 +1,13 @@
 package com.example.lorempicsum;
 
 import android.media.Image;
-import android.util.Log;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
 
 import java.util.List;
 
@@ -35,7 +32,6 @@ import retrofit2.Response;
 public class LoremFragment extends Fragment {
     ArrayList<Lorem> foo = new ArrayList<>();
     RecyclerView recyclerView;
-    ArrayList<Lorem> dataArrayList;
 
     @Nullable
     @Override
@@ -57,20 +53,19 @@ public class LoremFragment extends Fragment {
          //       2, GridLayoutManager.VERTICAL, false));
 
         SWApiService service = Utils.createService();
-        service.getImages().enqueue(new Callback<List<LoremHeader>>() {
+
+        service.getLorem().enqueue(new Callback<LoremHeader>() {
             @Override
-            public void onResponse(@NonNull Call<List<LoremHeader>> call,@NonNull Response<List<LoremHeader>> response) {
+            public void onResponse(@NonNull Call<LoremHeader> call,@NonNull Response<LoremHeader> response) {
                 if(response.body()==null) return;
 
-                //dataArrayList<Lorem>  = response.body();
-                List<LoremHeader> results = response.body();
+                List<Lorem> results = response.body().results;
                 recyclerView.setAdapter(new LoremAdapter(results));
             }
 
             @Override
-            public void onFailure(Call<List<LoremHeader>> call, Throwable t) {
+            public void onFailure(Call<LoremHeader> call, Throwable t) {
                 Toast.makeText (view.getContext (), t.getMessage (), Toast.LENGTH_LONG).show ();
-                Log.d("error", t.getMessage());
             }
         });
     }
