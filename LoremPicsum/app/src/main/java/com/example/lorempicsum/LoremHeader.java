@@ -1,6 +1,7 @@
 package com.example.lorempicsum;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoremHeader {
 
