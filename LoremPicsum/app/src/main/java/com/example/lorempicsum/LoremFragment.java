@@ -1,7 +1,9 @@
 package com.example.lorempicsum;
 
+import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -32,6 +34,8 @@ import retrofit2.Response;
 public class LoremFragment extends Fragment {
     ArrayList<Lorem> foo = new ArrayList<>();
     RecyclerView recyclerView;
+    private LoremAdapter loremAdapter;
+    private List<Lorem> dataArrayList;
 
     @Nullable
     @Override
@@ -41,6 +45,7 @@ public class LoremFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+        dataArrayList = new ArrayList<>();
 
         FragmentActivity activity = getActivity ();
         if (activity == null) return;
@@ -54,27 +59,37 @@ public class LoremFragment extends Fragment {
 
         SWApiService service = Utils.createService();
 
-        service.getLorem().enqueue(new Callback<LoremHeader>() {
+        //Call<List<Lorem>> call = service.getLorem();
+        service.getLorem().enqueue(new Callback<List<Lorem>>() {
             @Override
-            public void onResponse(@NonNull Call<LoremHeader> call,@NonNull Response<LoremHeader> response) {
+            public void onResponse(@NonNull Call<List<Lorem>> call,@NonNull Response<List<Lorem>> response) {
                 if(response.body()==null) return;
 
-                List<Lorem> results = response.body().results;
-                recyclerView.setAdapter(new LoremAdapter(results));
+                dataArrayList = response.body();
+                //List<Lorem> results = response.body().results;
+                loremAdapter=new LoremAdapter(view.getContext(),dataArrayList);
+                recyclerView.setAdapter(loremAdapter);
             }
 
             @Override
-            public void onFailure(Call<LoremHeader> call, Throwable t) {
+            public void onFailure(Call<List<Lorem>> call, Throwable t) {
                 Toast.makeText (view.getContext (), t.getMessage (), Toast.LENGTH_LONG).show ();
+                Log.e("ERROR",t.getMessage());
             }
         });
     }
 }
 
 class LoremAdapter extends RecyclerView.Adapter<LoremAdapter.LoremViewHolder>{
-    private final List<Lorem> data;
+    private Context context;
+    private List<Lorem> dataList;
+    //private final List<Lorem> data;
 
-    LoremAdapter(List<Lorem> d){data = d;}
+    //LoremAdapter(List<Lorem> d){data = d;}
+    public LoremAdapter(Context context, List<Lorem> dataList){
+        this.context=context;
+        this.dataList=dataList;
+    }
 
     @NonNull
     @Override
@@ -86,12 +101,12 @@ class LoremAdapter extends RecyclerView.Adapter<LoremAdapter.LoremViewHolder>{
     }
 
     public void onBindViewHolder(@NonNull LoremViewHolder holder, int position){
-        Lorem lorem = data.get(position);
-        holder.setData(lorem.Author, lorem.URL, lorem.UrlDownload);
+        Lorem lorem = dataList.get(position);
+        holder.setData(lorem.getAuthor(), lorem.getUrl(), lorem.getDownload_url());
     }
 
     @Override
-    public int getItemCount(){return data.size();}
+    public int getItemCount(){return dataList.size();}
 
     static class LoremViewHolder extends RecyclerView.ViewHolder{
         ImageView ivPicture;
