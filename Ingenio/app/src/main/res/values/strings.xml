@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Ingenio</string>
+    <string name="app_company">Ingenio, Inc.</string>
+    <string name="email_example">example@company.com</string>
+    <string name="signup">Registrate</string>
+    <string name="login">Iniciar sesión</string>
     <string name="logo">logo</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo electrónico</string>
 </resources>
