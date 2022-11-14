@@ -17,24 +17,15 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.splash_screen);
-
         // llamamos a un manejador para correr una tarea despues de un tiempo determinado
         new Handler().postDelayed(() -> {
             // creamos un intent para mostrar la pagina de login
-            Intent i = new Intent(SplashActivity.this, MainActivity.class);
+            Intent mainActivity = new Intent(SplashActivity.this, MainActivity.class);
 
-            startActivity(i);
-
+            startActivity(mainActivity);
             // terminamos la actividad actual
             finish();
 
         }, 2_000);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Implementar funcionalidad para hacer caso omiso de la splash screen
     }
 }
