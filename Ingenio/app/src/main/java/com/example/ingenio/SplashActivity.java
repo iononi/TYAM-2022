@@ -20,10 +20,9 @@ public class SplashActivity extends AppCompatActivity {
         // llamamos a un manejador para correr una tarea despues de un tiempo determinado
         new Handler().postDelayed(() -> {
             // creamos un intent para mostrar la pagina de login
-            Intent i = new Intent(SplashActivity.this, MainActivity.class);
+            Intent mainActivity = new Intent(SplashActivity.this, MainActivity.class);
 
-            startActivity(i);
-
+            startActivity(mainActivity);
             // terminamos la actividad actual
             finish();
 
