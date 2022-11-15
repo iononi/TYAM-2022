@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ingenio.databinding.ActivityRegisterBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     ActivityRegisterBinding binding;
@@ -76,11 +77,34 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    private void login (String email, String password) {
+        auth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        FirebaseUser user = auth.getCurrentUser();
+                        String name = "";
+
+                        if(user != null){
+                            name = user.getDisplayName();
+                        }
+
+                        Toast.makeText(getBaseContext(),"Usuario" + name, Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getBaseContext(), PresentActivity.class);
+
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(),"Usuario y/o contraseña no reconocida",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
     private void registerUser (String email, String password) {
         auth.createUserWithEmailAndPassword (email, password)
                 .addOnCompleteListener (task -> {
                     if (task.isSuccessful ()) {
                         Toast.makeText (getBaseContext(), "Register completed!", Toast.LENGTH_LONG).show ();
+                        login (email, password);
                     } else {
                         if (task.getException () != null) {
                             Log.e("ingenio", task.getException().getMessage());
