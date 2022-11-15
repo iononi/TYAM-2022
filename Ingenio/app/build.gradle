@@ -46,6 +46,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:latest.release'
     implementation 'com.google.firebase:firebase-auth:latest.release'
     implementation 'androidx.databinding:viewbinding:7.3.1'
+
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
     // TODO: Add the dependencies for Firebase products you want to use
     // When using BoM, don't specify versions in Firebase dependencies
     // https://firebase.google.com/docs/android/setup#available-libraries

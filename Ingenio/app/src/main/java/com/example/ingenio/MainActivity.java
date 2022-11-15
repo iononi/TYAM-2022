@@ -14,6 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.ingenio.databinding.ActivityMainBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     FormViewModel  formViewModel;
     private FirebaseAuth auth;
+    public static final String GOOGLE_ID_CLIENT_TOKEN = Secretos.GOOGLE_ID_CLIENT_TOKEN;
+    private GoogleSignInClient gmsClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +83,16 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             login(edtEmail.getText().toString(), edtPassword.getText().toString());
         });
+
+        //desarrollo del login con Google
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(GOOGLE_ID_CLIENT_TOKEN)
+                .requestEmail()
+                .build();
+
+        gmsClient = GoogleSignIn.getClient(getBaseContext(), gso);
+
+
 
     }
 
