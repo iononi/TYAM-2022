@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,8 +15,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.ingenio.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.OAuthProvider;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -78,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
             login(edtEmail.getText().toString(), edtPassword.getText().toString());
         });
 
+        // Inicio de sesion con microsoft
+        binding.msLogin.setOnClickListener (v -> {
+            microsoftLogin ();
+        });
+
     }
 
     private void login (String email, String password){
@@ -99,6 +108,61 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getBaseContext(),"Usuario y/o contraseña no reconocida",Toast.LENGTH_LONG).show();
                     }
+                });
+    }
+
+    private void microsoftLogin () {
+        OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
+        provider.addCustomParameter ("prompt", "consent"); // pide confirmación para iniciar sesión
+        Task<AuthResult> pendingResultTask = auth.getPendingAuthResult ();
+        if (pendingResultTask != null) {
+            // There's something already here! Finish the sign-in for your user.
+            pendingSignIn (pendingResultTask);
+        } else {
+            // There's no pending result so you need to start the sign-in flow.
+            startNewSignInOperation (provider);
+        }
+    }
+
+    private void pendingSignIn (Task<AuthResult> pendingTask) {
+        pendingTask.addOnSuccessListener (authResult -> {
+            // User is signed in.
+            // IdP data available in
+            // authResult.getAdditionalUserInfo().getProfile().
+            // The OAuth access token can also be retrieved:
+            // ((OAuthCredential)authResult.getCredential()).getAccessToken().
+            // The OAuth ID token can also be retrieved:
+            // ((OAuthCredential)authResult.getCredential()).getIdToken().
+            Toast.makeText (this, "MS login successful", Toast.LENGTH_SHORT).show ();
+        })
+        .addOnFailureListener (e -> {
+            // Handle failure.
+            Toast.makeText (this, "MS login failed", Toast.LENGTH_SHORT).show ();
+        });
+    }
+
+    private void startNewSignInOperation (OAuthProvider.Builder provider) {
+        auth.startActivityForSignInWithProvider (this, provider.build ())
+                .addOnSuccessListener (authResult -> {
+                    // User is signed in.
+                    // IdP data available in
+                    // authResult.getAdditionalUserInfo().getProfile().
+                    // The OAuth access token can also be retrieved:
+                    // authResult.getCredential().getAccessToken().
+                    // The OAuth ID token can also be retrieved:
+                    // authResult.getCredential().getIdToken().
+                    Toast.makeText (this, "MS login successful", Toast.LENGTH_SHORT).show ();
+                    Intent presentActivity = new Intent (this, PresentActivity.class);
+                    startActivity (presentActivity);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure.
+                    Log.e ("Ingenio", e.toString ());
+                    Toast.makeText (this, "MS login failed startActivity", Toast.LENGTH_SHORT).show ();
+                })
+                .addOnCanceledListener (() -> {
+                    Toast.makeText (this, "Operation cancelled", Toast.LENGTH_SHORT).show ();
                 });
     }
 
