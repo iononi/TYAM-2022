@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         // Inicio de sesion con microsoft
         binding.msLogin.setOnClickListener (v -> {
             microsoftLogin ();
+        });
 
         //desarrollo del login con Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -115,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         sign_in_button_google.setOnClickListener(v ->{
             showGoogleSignInView();
         });
-
     }
 
     private void login (String email, String password){
@@ -155,19 +155,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void pendingSignIn (Task<AuthResult> pendingTask) {
         pendingTask.addOnSuccessListener (authResult -> {
-            // User is signed in.
-            // IdP data available in
-            // authResult.getAdditionalUserInfo().getProfile().
-            // The OAuth access token can also be retrieved:
-            // ((OAuthCredential)authResult.getCredential()).getAccessToken().
-            // The OAuth ID token can also be retrieved:
-            // ((OAuthCredential)authResult.getCredential()).getIdToken().
-            Toast.makeText (this, "MS login successful", Toast.LENGTH_SHORT).show ();
-        })
-        .addOnFailureListener (e -> {
-            // Handle failure.
-            Toast.makeText (this, "MS login failed", Toast.LENGTH_SHORT).show ();
-        });
+                    // User is signed in.
+                    // IdP data available in
+                    // authResult.getAdditionalUserInfo().getProfile().
+                    // The OAuth access token can also be retrieved:
+                    // ((OAuthCredential)authResult.getCredential()).getAccessToken().
+                    // The OAuth ID token can also be retrieved:
+                    // ((OAuthCredential)authResult.getCredential()).getIdToken().
+                    Toast.makeText (this, "MS login successful", Toast.LENGTH_SHORT).show ();
+                })
+                .addOnFailureListener (e -> {
+                    // Handle failure.
+                    Toast.makeText (this, "MS login failed", Toast.LENGTH_SHORT).show ();
+                });
     }
 
     private void startNewSignInOperation (OAuthProvider.Builder provider) {
@@ -192,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .addOnCanceledListener (() -> {
                     Toast.makeText (this, "Operation cancelled", Toast.LENGTH_SHORT).show ();
+                });
+        }
 
     private void showGoogleSignInView(){
         auth = FirebaseAuth.getInstance();
@@ -236,18 +238,16 @@ public class MainActivity extends AppCompatActivity {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
-                   if(task.isSuccessful()){
-                       Toast.makeText(getBaseContext(),"Google SigIn Succesful!",Toast.LENGTH_LONG).show();
+                    if(task.isSuccessful()){
+                        Toast.makeText(getBaseContext(),"Google SigIn Succesful!",Toast.LENGTH_LONG).show();
 
-                       Intent intent = new Intent(getBaseContext(), PresentActivity.class);
+                        Intent intent = new Intent(getBaseContext(), PresentActivity.class);
 
-                       startActivity(intent);
-                   } else {
-                       Toast.makeText(getBaseContext(), "SignIn with Google services failded with exception "+
-                               (task.getException() != null ? task.getException().getMessage() : "None"), Toast.LENGTH_LONG).show();
-                   }
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(), "SignIn with Google services failded with exception "+
+                                (task.getException() != null ? task.getException().getMessage() : "None"), Toast.LENGTH_LONG).show();
+                    }
                 });
     }
-
-
 }
