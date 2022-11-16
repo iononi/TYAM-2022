@@ -18,6 +18,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.ingenio.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.OAuthProvider;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -94,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
             login(edtEmail.getText().toString(), edtPassword.getText().toString());
         });
 
+        // Inicio de sesion con microsoft
+        binding.msLogin.setOnClickListener (v -> {
+            microsoftLogin ();
+        });
+
         //desarrollo del login con Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(GOOGLE_ID_CLIENT_TOKEN)
@@ -106,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         sign_in_button_google.setOnClickListener(v ->{
             showGoogleSignInView();
         });
-
     }
 
     private void login (String email, String password){
@@ -130,6 +139,61 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void microsoftLogin () {
+        OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
+        provider.addCustomParameter ("prompt", "consent"); // pide confirmación para iniciar sesión
+        Task<AuthResult> pendingResultTask = auth.getPendingAuthResult ();
+        if (pendingResultTask != null) {
+            // There's something already here! Finish the sign-in for your user.
+            pendingSignIn (pendingResultTask);
+        } else {
+            // There's no pending result so you need to start the sign-in flow.
+            startNewSignInOperation (provider);
+        }
+    }
+
+    private void pendingSignIn (Task<AuthResult> pendingTask) {
+        pendingTask.addOnSuccessListener (authResult -> {
+                    // User is signed in.
+                    // IdP data available in
+                    // authResult.getAdditionalUserInfo().getProfile().
+                    // The OAuth access token can also be retrieved:
+                    // ((OAuthCredential)authResult.getCredential()).getAccessToken().
+                    // The OAuth ID token can also be retrieved:
+                    // ((OAuthCredential)authResult.getCredential()).getIdToken().
+                    Toast.makeText (this, "MS login successful", Toast.LENGTH_SHORT).show ();
+                })
+                .addOnFailureListener (e -> {
+                    // Handle failure.
+                    Toast.makeText (this, "MS login failed", Toast.LENGTH_SHORT).show ();
+                });
+    }
+
+    private void startNewSignInOperation (OAuthProvider.Builder provider) {
+        auth.startActivityForSignInWithProvider (this, provider.build ())
+                .addOnSuccessListener (authResult -> {
+                    // User is signed in.
+                    // IdP data available in
+                    // authResult.getAdditionalUserInfo().getProfile().
+                    // The OAuth access token can also be retrieved:
+                    // authResult.getCredential().getAccessToken().
+                    // The OAuth ID token can also be retrieved:
+                    // authResult.getCredential().getIdToken().
+                    Toast.makeText (this, "MS login successful", Toast.LENGTH_SHORT).show ();
+                    Intent presentActivity = new Intent (this, PresentActivity.class);
+                    startActivity (presentActivity);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure.
+                    Log.e ("Ingenio", e.toString ());
+                    Toast.makeText (this, "MS login failed startActivity", Toast.LENGTH_SHORT).show ();
+                })
+                .addOnCanceledListener (() -> {
+                    Toast.makeText (this, "Operation cancelled", Toast.LENGTH_SHORT).show ();
+                });
+        }
 
     private void showGoogleSignInView(){
         auth = FirebaseAuth.getInstance();
@@ -174,18 +238,16 @@ public class MainActivity extends AppCompatActivity {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
-                   if(task.isSuccessful()){
-                       Toast.makeText(getBaseContext(),"Google SigIn Succesful!",Toast.LENGTH_LONG).show();
+                    if(task.isSuccessful()){
+                        Toast.makeText(getBaseContext(),"Google SigIn Succesful!",Toast.LENGTH_LONG).show();
 
-                       Intent intent = new Intent(getBaseContext(), PresentActivity.class);
+                        Intent intent = new Intent(getBaseContext(), PresentActivity.class);
 
-                       startActivity(intent);
-                   } else {
-                       Toast.makeText(getBaseContext(), "SignIn with Google services failded with exception "+
-                               (task.getException() != null ? task.getException().getMessage() : "None"), Toast.LENGTH_LONG).show();
-                   }
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(), "SignIn with Google services failded with exception "+
+                                (task.getException() != null ? task.getException().getMessage() : "None"), Toast.LENGTH_LONG).show();
+                    }
                 });
     }
-
-
 }
