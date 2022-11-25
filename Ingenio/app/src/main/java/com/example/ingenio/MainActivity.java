@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logAnonimo () {
+        auth = FirebaseAuth.getInstance();
         auth.signInAnonymously ()
                 //.addOnSuccessListener(authResult -> Log.i ("TYAM", authResult.toString ()))
                 .addOnSuccessListener(task -> {
