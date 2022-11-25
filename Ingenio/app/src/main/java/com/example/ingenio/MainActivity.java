@@ -116,6 +116,24 @@ public class MainActivity extends AppCompatActivity {
         sign_in_button_google.setOnClickListener(v ->{
             showGoogleSignInView();
         });
+
+
+        //desarrollo del login de forma anónima
+        Button btnAno = view1.findViewById(R.id.btnAnonimo);
+        btnAno.setOnClickListener(v -> {
+            logAnonimo();
+        });
+    }
+
+    private void logAnonimo () {
+        auth.signInAnonymously ()
+                //.addOnSuccessListener(authResult -> Log.i ("TYAM", authResult.toString ()))
+                .addOnSuccessListener(task -> {
+                    Toast.makeText(getBaseContext(),"Inicio de sesion anonima exitoso",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), PresentActivity.class);
+                    startActivity(intent);
+                })
+                .addOnFailureListener(e -> Log.e ("TYAM", e.getMessage ()));
     }
 
     private void login (String email, String password){
