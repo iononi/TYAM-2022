@@ -23,7 +23,7 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
     Toolbar toolbar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState){
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_present);
 
@@ -36,55 +36,54 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
         setSupportActionBar(toolbar);
 
         //Navigation Drawer Menu
+
+        //Hide or show items (opcional, dependiendo las necesidades)
+
+        /*Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.nav_logout).setVisible(false);
+        menu.findItem()*/
+
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        //codigo que no sirve pero me da cosa borrarlo y que luego lo requiera
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Ingenio");
-        setActionBar(toolbar);*/
-
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else{
+        } else {
             super.onBackPressed();
         }
 
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                break;
+
+            case R.id.nav_login:
+                Intent intent = new Intent(PresentActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.nav_profile:
+                Intent intent1 = new Intent(PresentActivity.this, PerfilActivity.class);
+                startActivity(intent1);
+                break;
+
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
 
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
-        if(item.getItemId() == R.id.mnuModUser){
-            Intent intent = new Intent(getBaseContext(), FormActivity.class);
-            startActivity(intent);
-        }else if(item.getItemId() == R.id.mnuVerUser){
-            Intent intent = new Intent(getBaseContext(), PerfilActivity.class);
-            startActivity(intent);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 }
