@@ -5,34 +5,32 @@
 
         <item
             android:id="@+id/nav_home"
-            android:title="Home"
-            android:icon="@drawable/ic_baseline_home_24"/>
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home" />
 
     </group>
 
-    <group android:checkableBehavior="single">
 
-        <item
-            android:title="Profile">
+    <item android:title="Profile">
 
-            <menu>
+        <menu>
+            <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/ic_baseline_login_24"
-                    android:title="Login"/>
+                    android:title="Login" />
                 <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/ic_baseline_person_24"
-                    android:title="Profile"/>
+                    android:title="Profile" />
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/ic_baseline_logout_24"
-                    android:title="Logout"/>
-            </menu>
+                    android:title="Logout" />
+            </group>
+        </menu>
 
-        </item>
+    </item>
 
-
-    </group>
 
 </menu>
