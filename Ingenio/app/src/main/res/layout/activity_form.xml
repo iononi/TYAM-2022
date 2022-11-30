@@ -15,7 +15,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_centerHorizontal="true"
-            android:text="Registro de Usuario" />
+            android:layout_marginTop="10dp"
+            android:text="Registro de Usuario"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvProfilePic"
@@ -42,10 +44,12 @@
             android:id="@+id/btnChangePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody1"
             android:layout_alignTop="@id/ivProfilePic"
             android:layout_alignParentEnd="true"
-            android:text="Cambiar" />
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="4dp"
+            android:text="Cambiar"
+            android:textAppearance="?attr/textAppearanceBody1" />
 
         <View
             android:id="@+id/strut"
@@ -100,7 +104,7 @@
             android:layout_alignEnd="@id/strut"
             android:layout_alignBaseline="@id/edtAddress"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Dirección" />
+            android:text="Correo" />
 
         <EditText
             android:id="@+id/edtAddress"
@@ -108,7 +112,28 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/strut"
             android:layout_below="@id/edtlastName"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:id="@+id/tvPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/tvAddress"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignBaseline="@id/edtAddress3"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Contraseña" />
+
+        <EditText
+            android:id="@+id/edtAddress3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_below="@id/edtAddress"
+            android:layout_marginTop="5dp"
+            android:inputType="textPassword"/>
 
         <TextView
             android:id="@+id/tvAge"
@@ -119,7 +144,7 @@
             android:layout_alignEnd="@id/strut"
             android:layout_alignBaseline="@id/edtAge"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Edad" />
+            android:text="Fecha de nacimiento" />
 
         <EditText
             android:id="@+id/edtAge"
@@ -127,7 +152,9 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/strut"
             android:layout_below="@id/edtAddress"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="60dp"
+            android:hint="dd/mm/aaaa"
+            android:inputType="date"/>
 
         <TextView
             android:id="@+id/tvTelephone"
@@ -146,15 +173,20 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/strut"
             android:layout_below="@id/edtAge"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:inputType="phone"/>
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/edtTelephone"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="30dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="30dp"
             android:text="Guardar" />
 
     </RelativeLayout>
