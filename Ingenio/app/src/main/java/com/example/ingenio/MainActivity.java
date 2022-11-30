@@ -96,7 +96,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnLogin = view1.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(v -> {
-            login(edtEmail.getText().toString(), edtPassword.getText().toString());
+            // Añade validacion de campos. Si presiona iniciar sesion con los campos vacios, truena
+            if (edtEmail.getText ().toString ().isEmpty () || edtPassword.getText ().toString ().isEmpty ())
+                Toast.makeText (this, "Asegúrese de llenar los campos", Toast.LENGTH_SHORT).show ();
+            else
+                login(edtEmail.getText().toString(), edtPassword.getText().toString());
         });
 
         // Inicio de sesion con microsoft
