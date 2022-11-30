@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         //intent que nos dirigira a la activity de registro
         binding.btnRegister.setOnClickListener(view -> {
-            Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
+            Intent intent = new Intent(getBaseContext(), FormActivity.class);
 
             startActivity(intent);
         });
