@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void microsoftLogin () {
         OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
-        provider.addCustomParameter ("prompt", "consent"); // pide confirmación para iniciar sesión
+        provider.addCustomParameter ("prompt", "select_account");
         Task<AuthResult> pendingResultTask = auth.getPendingAuthResult ();
         if (pendingResultTask != null) {
             // There's something already here! Finish the sign-in for your user.
