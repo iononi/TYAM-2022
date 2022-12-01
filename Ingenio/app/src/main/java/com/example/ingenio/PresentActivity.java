@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -16,11 +17,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PresentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    FirebaseAuth auth = FirebaseAuth.getInstance ();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,8 +73,7 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.nav_login:
-                Intent intent = new Intent(PresentActivity.this, MainActivity.class);
-                startActivity(intent);
+                toLogin ();
                 break;
 
             case R.id.nav_profile:
@@ -79,10 +81,20 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
                 startActivity(intent1);
                 break;
 
+            case R.id.nav_logout:
+                auth.signOut ();
+                Toast.makeText (PresentActivity.this, "Sesión finalizada", Toast.LENGTH_SHORT).show ();
+                toLogin ();
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void toLogin () {
+        Intent mainActivity = new Intent(PresentActivity.this, MainActivity.class);
+        startActivity(mainActivity);
     }
 
 
