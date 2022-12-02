@@ -2,14 +2,14 @@ package com.example.ingenio;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,22 +18,42 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class PresentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    FirebaseAuth auth = FirebaseAuth.getInstance ();
+    TextView tvNameBar, tvEmailBar;
+    FirebaseUser currentUser;
+    FirebaseAuth auth;
+    String signInProvider;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_present);
-
+        auth = FirebaseAuth.getInstance ();
+        currentUser = auth.getCurrentUser (); // referencia al usuario actual
         //Hooks
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+
+        View headerLayout = navigationView.getHeaderView (0);
+        tvNameBar = headerLayout.findViewById (R.id.tvNameNavBar); // TV del header
+        tvEmailBar = headerLayout.findViewById (R.id.tvEmailNavBar); // TV del header
+
+        if (currentUser != null) {
+            signInProvider = currentUser.getIdToken (false).getResult ().getSignInProvider ();
+
+            assert signInProvider != null;
+            if (!signInProvider.equals ("anonymous")) {
+                tvNameBar.setText (currentUser. getDisplayName ());
+                tvEmailBar.setText (currentUser.getEmail ());
+            }
+        }
+
 
         //Tool bar
         setSupportActionBar(toolbar);
@@ -95,6 +115,7 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
     private void toLogin () {
         Intent mainActivity = new Intent(PresentActivity.this, MainActivity.class);
         startActivity(mainActivity);
+        finish ();
     }
 
 
