@@ -34,8 +34,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvElements"
+            <FrameLayout
+                android:id="@+id/container"
                 android:layout_width="409dp"
                 android:layout_height="677dp"
                 app:layout_constraintBottom_toBottomOf="parent"
