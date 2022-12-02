@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.ingenio.Fragments.DetallesFragment;
+import com.example.ingenio.Fragments.FragmentListado;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -74,6 +78,30 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_home);
+
+        //desarrollo del recycler view
+        FragmentListado f = new FragmentListado();
+        f.setOnDegreeSelectedListener(position -> {
+            FrameLayout layout = findViewById(R.id.contentDetalles);
+
+            if (layout != null){
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentDetalles, new DetallesFragment(position))
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
+            } else {
+                Intent intent = new Intent(this,DetallesActivity.class);
+                intent.putExtra("POSITION", position);
+                startActivity(intent);
+            }
+        });
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container,f)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     @Override

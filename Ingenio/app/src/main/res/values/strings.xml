@@ -11,4 +11,19 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string-array name="carreras">
+        <item>Ingeniería informatica</item>
+        <item>Ingeniería industrial</item>
+    </string-array>
+
+    <string-array name="URL_Imagenes">
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Ffotoejemplo.jpg?alt=media&amp;token=9a6b78dd-a3e8-487e-967e-3bbbaa214259</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Ffotoejemplo2.jpg?alt=media&amp;token=9268e69b-18a8-4581-abda-146d5e3ace08</item>
+    </string-array>
+
+    <string-array name="detalles">
+        <item>Esta ingenieria tiene que ver con las computadoras, tecnologias moviles, web, inteligencia artificial, entre otras cosas</item>
+        <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
+    </string-array>
+
 </resources>
