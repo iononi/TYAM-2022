@@ -41,7 +41,7 @@ public class PerfilActivity extends Activity {
         binding.tvTelephone.setText (telephone);
 
         email = currentUser.getEmail ();
-        binding.tvAddress.setText (email);
+        binding.tvEmail.setText (email);
         setContentView(profileView);
     }
 }
