@@ -125,12 +125,11 @@ public class MainActivity extends AppCompatActivity {
         //desarrollo del login de forma anónima
         Button btnAno = view1.findViewById(R.id.btnAnonimo);
         btnAno.setOnClickListener(v -> {
-            logAnonimo();
+            logAnonimo(auth);
         });
     }
 
-    private void logAnonimo () {
-        auth = FirebaseAuth.getInstance();
+    private void logAnonimo (FirebaseAuth auth) {
         auth.signInAnonymously ()
                 //.addOnSuccessListener(authResult -> Log.i ("TYAM", authResult.toString ()))
                 .addOnSuccessListener(task -> {
