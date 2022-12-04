@@ -28,34 +28,60 @@ public class FormActivity extends AppCompatActivity {
         binding = ActivityFormBinding.inflate (getLayoutInflater ());
         var registerView = binding.getRoot ();
         setContentView(registerView);
-//        SABER SI LA FOTO EN EL IMAGEVIEW DE FOTO DE PERFIL ES LA DE PERSONA
-//        ImageView view = binding.ivProfilePic;
-//        view.setTag (R.mipmap.profile);
-//        view.setOnClickListener (v -> {
-//            ImageView imageView = (ImageView) v;
-//            assert (R.id.ivProfilePic == imageView.getId ());
-//
-//            // See here
-//            Integer integer = (Integer) imageView.getTag();
-//            integer = integer == null ? 0 : integer;
-//
-//            System.out.println("Integer: " + integer);
-//            if (integer == R.mipmap.profile) {
-//                System.out.println("Es la foto de persona");
-//            }
-//        });
-//        Drawable profilePicture = binding.ivProfilePic.getDrawable ();
-//        System.out.println ("Foto de perfil: " + profilePicture);
-        binding.btnChangePic.setOnClickListener (view -> {
+
+        // pone una etiqueda en el IV con el ID de la foto @mipmap/profile
+        // servirá más adelante para saber si se cargó una foto (tomó foto con la cámara) o no
+        binding.ivProfilePic.setTag (R.mipmap.profile);
+        binding.btnChangePic.setOnClickListener (view1 -> {
             if (checkSelfPermission (Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions (new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
             } else {
                 Intent cameraIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+                // como ya se tomó la foto, se pone a 0 la etiqueta del IV, 0 != @mipmap/profile
+                // entonces en la llamada al método hasDefaultProfilePicture() obtendremos tagCode=0
+                binding.ivProfilePic.setTag (0);
                 startActivityForResult (cameraIntent, CAMERA_REQUEST);
             }
         });
         //TODO: Implementar funcionalidad en el botón "Guardar"
         // El botón debe crear un perfil en Realtime Database e iniciar sesión
+        binding.btnRegister.setOnClickListener (view2 -> {
+            // checar por campos obligatorios: Nombre, apellidos, correo, contraseña
+            boolean hasNoName = binding.edtName.getText ().toString ().isEmpty ();
+            boolean hasNoLastName = binding.edtlastName.getText ().toString ().isEmpty ();
+            boolean hasNoEmail = binding.edtEmail.getText ().toString ().isEmpty ();
+            boolean hasNoPassword = binding.edtPassword.getText ().toString ().isEmpty ();
+            boolean promptMissingFieldsWarning = false;
+            if (hasNoName) {
+                binding.edtlastName.setError ("Por favor llena este campo");
+                promptMissingFieldsWarning = true;
+            }
+            if (hasNoLastName) {
+                binding.edtName.setError ("Por favor llena este campo");
+                promptMissingFieldsWarning = true;
+            }
+            if (hasNoEmail) {
+                binding.edtEmail.setError ("Por favor llena este campo");
+                promptMissingFieldsWarning = true;
+            }
+
+            if (hasNoPassword) {
+                binding.edtPassword.setError ("Por favor llena este campo");
+                promptMissingFieldsWarning = true;
+            }
+
+            if (promptMissingFieldsWarning)
+                Toast.makeText (this, "Por favor, rellena los campos marcados", Toast.LENGTH_SHORT).show ();
+            else {
+                // TODO: Crear perfil en FB con los datos ingresados e iniciar sesión
+                if (hasDefaultProfilePicture ())
+                    // no subir foto a FB
+                    System.out.println("Tiene la foto de perfil predeterminada");
+                else
+                    // subir imagen a FB
+                    System.out.println("Tiene foto de perfil");
+            }
+        });
     }
 
     @Override
@@ -80,5 +106,12 @@ public class FormActivity extends AppCompatActivity {
             Bitmap photo = (Bitmap) data.getExtras ().get ("data");
             binding.ivProfilePic.setImageBitmap (photo);
         }
+    }
+
+    private boolean hasDefaultProfilePicture () {
+        Integer tagCode = (Integer) binding.ivProfilePic.getTag();
+        tagCode = (tagCode == null) ? 0 : tagCode;
+
+        return tagCode == R.mipmap.profile; // si es diferente de @mipmap/profile, tiene foto
     }
 }
