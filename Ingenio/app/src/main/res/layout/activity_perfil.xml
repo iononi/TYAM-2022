@@ -21,16 +21,30 @@
 
     <ImageView
         android:id="@+id/ivProfilePic"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/tvTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        android:src="@mipmap/profile" />
 
-    <TextView
+    <Button
+        android:id="@+id/btnChangePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ivProfilePic"
+        android:layout_alignParentEnd="true"
+        android:text="Cambiar"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintBottom_toTopOf="@+id/tvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfilePic" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvBirthday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvTelephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +93,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBirthday" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvCareer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
