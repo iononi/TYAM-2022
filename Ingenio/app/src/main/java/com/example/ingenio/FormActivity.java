@@ -7,21 +7,41 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ingenio.Models.Users;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import com.example.ingenio.databinding.ActivityFormBinding;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Vector;
 
 public class FormActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     ActivityFormBinding binding;
+    FirebaseDatabase database;
+    DatabaseReference users;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        database = FirebaseDatabase.getInstance (); // obtiene la referencia a la BD
+        users = database.getReference ("users"); // obtiene la referencia al nodo users
+        // modifica estos valores para ingresar un nuevo usuario
+        //Users kevin = new Users ("Kevin", "Salgado", "sgkeving@gmail.com", 123, "13/07/2000", "2295062034");
+        //saveNewUser ("kevin", kevin);
+        printDatabaseChildren (users);
         binding = ActivityFormBinding.inflate (getLayoutInflater ());
         var registerView = binding.getRoot ();
         setContentView(registerView);
@@ -108,5 +128,46 @@ public class FormActivity extends AppCompatActivity {
         tagCode = (tagCode == null) ? 0 : tagCode;
 
         return tagCode == R.mipmap.profile; // si es diferente de @mipmap/profile, tiene foto
+    }
+
+    private void printDatabaseChildren (DatabaseReference reference) {
+        //Vector<Users> vUsers = new Vector<>();
+        reference.addListenerForSingleValueEvent (new ValueEventListener() {
+            @Override
+            public void onDataChange (@NonNull DataSnapshot dataSnapshot) {
+                // datasnapShot hace referencia a la rama users
+                // el método getChildren devuelve cada subelemento user
+                for (DataSnapshot item: dataSnapshot.getChildren ()) {
+                    Log.d ("TAG", item.getKey() + " - " +  item.getValue ().toString());
+                    // getValue devuelve referencia al objeto contenido en cada nodo
+                    // y lo convierte al tipo de datos indicado en el parámetro
+                    Users user = item.getValue (Users.class);
+          //          vUsers.add (user);
+                    Log.d ("TAG", user.getName() + " " + user.getLastName());
+                }
+            }
+
+            @Override
+            public void onCancelled (@NonNull DatabaseError databaseError) {
+                Log.e ("Ingenio", databaseError.getMessage ());
+            }
+        });
+    }
+
+    /**
+     * agrega un nuevo elemento a la rama Userss
+     */
+    private void saveNewUser (String nodeName, Users newUser) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance ();
+        DatabaseReference users = database.getReference ("users");
+
+        HashMap<String, Object> node = new HashMap<>();
+        node.put (nodeName, newUser);
+
+        users.updateChildren (node)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText (getBaseContext (), "Ndde added successfully", Toast.LENGTH_LONG).show ();
+                })
+                .addOnFailureListener(e -> Toast.makeText (getBaseContext (), "Ndde add failed: " + e.getMessage (), Toast.LENGTH_LONG).show ());
     }
 }
