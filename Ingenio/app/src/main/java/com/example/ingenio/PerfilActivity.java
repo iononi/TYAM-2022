@@ -51,7 +51,7 @@ public class PerfilActivity extends Activity {
 
         email = currentUser.getEmail ();
         binding.tvEmail.setText (email);
-        binding.ivProfilePic.setImageDrawable (ResourcesCompat.getDrawable(getResources (), R.mipmap.profile, null));
+
         binding.btnChangePic.setOnClickListener (view -> {
             if (checkSelfPermission (Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions (new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
