@@ -7,7 +7,7 @@ public class Users {
     private int password;
     private String birthday;
     private String phoneNumber;
-    private String profilePirctureUrl;
+    private String profilePictureUrl;
 
     public Users () {
 
@@ -22,14 +22,14 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public Users (String name, String lastName, String email, int password, String birthday, String phoneNumber, String profilePirctureUrl) {
+    public Users (String name, String lastName, String email, int password, String birthday, String phoneNumber, String profilePictureUrl) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.birthday = birthday;
         this.phoneNumber = phoneNumber;
-        this.profilePirctureUrl = profilePirctureUrl;
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     public String getName () {
@@ -80,12 +80,12 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getProfilePirctureUrl () {
-        return profilePirctureUrl;
+    public String getProfilePictureUrl () {
+        return profilePictureUrl;
     }
 
-    public void setProfilePirctureUrl (String profilePirctureUrl) {
-        this.profilePirctureUrl = profilePirctureUrl;
+    public void setProfilePictureUrl (String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Users {
                 ", password=" + password +
                 ", birthday='" + birthday + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", profilePirctureUrl='" + profilePirctureUrl + '\'' +
+                ", profilePictureUrl='" + profilePictureUrl + '\'' +
                 '}';
     }
 }
