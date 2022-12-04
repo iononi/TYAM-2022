@@ -1,15 +1,12 @@
 package com.example.ingenio;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,8 +40,6 @@ public class FormActivity extends AppCompatActivity {
                 startActivityForResult (cameraIntent, CAMERA_REQUEST);
             }
         });
-        //TODO: Implementar funcionalidad en el botón "Guardar"
-        // El botón debe crear un perfil en Realtime Database e iniciar sesión
         binding.btnRegister.setOnClickListener (view2 -> {
             // checar por campos obligatorios: Nombre, apellidos, correo, contraseña
             boolean hasNoName = binding.edtName.getText ().toString ().isEmpty ();
