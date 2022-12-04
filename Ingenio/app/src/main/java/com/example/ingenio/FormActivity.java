@@ -38,10 +38,8 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance (); // obtiene la referencia a la BD
         users = database.getReference ("users"); // obtiene la referencia al nodo users
-        // modifica estos valores para ingresar un nuevo usuario
-        //Users kevin = new Users ("Kevin", "Salgado", "sgkeving@gmail.com", 123, "13/07/2000", "2295062034");
-        //saveNewUser ("kevin", kevin);
-        printDatabaseChildren (users);
+
+        //printDatabaseChildren (users);
         binding = ActivityFormBinding.inflate (getLayoutInflater ());
         var registerView = binding.getRoot ();
         setContentView(registerView);
@@ -88,13 +86,23 @@ public class FormActivity extends AppCompatActivity {
             if (promptMissingFieldsWarning)
                 Toast.makeText (this, "Por favor, rellena los campos marcados", Toast.LENGTH_SHORT).show ();
             else {
+                String name = binding.edtName.getText ().toString ();
+                String lastName = binding.edtlastName.getText ().toString ();
+                String email = binding.edtEmail.getText ().toString ();
+                int password = binding.edtPassword.getText ().toString ().hashCode ();
+                String birthday = binding.edtBirthday.getText ().toString ();
+                String phoneNumber = binding.edtTelephone.getText ().toString ();
+
+                Users user = new Users (name, lastName, email, password, birthday, phoneNumber);
+                if (!hasDefaultProfilePicture ()) {
+                    // TODO: subir imagen a FB Storage
+                    // si entra, significa que tomó foto con el cel, subir imagen a FB Storage
+                    // user.setProfilePictureUrl (LINK_DE_STORAGE);
+                }
+                // TODO: idear forma de crear claves únicas pues si dos usuarios se llaman igual
+                // lo sobreescribirá en lugar de crear uno nuevo (creo)
+                saveNewUser (name.toLowerCase (), user); // guarda al usuario en la BD
                 // TODO: Crear perfil en FB con los datos ingresados e iniciar sesión
-                if (hasDefaultProfilePicture ())
-                    // no subir foto a FB
-                    System.out.println("Tiene la foto de perfil predeterminada");
-                else
-                    // subir imagen a FB
-                    System.out.println("Tiene foto de perfil");
             }
         });
     }
@@ -155,7 +163,7 @@ public class FormActivity extends AppCompatActivity {
     }
 
     /**
-     * agrega un nuevo elemento a la rama Userss
+     * agrega un nuevo elemento a la rama users
      */
     private void saveNewUser (String nodeName, Users newUser) {
         FirebaseDatabase database = FirebaseDatabase.getInstance ();
