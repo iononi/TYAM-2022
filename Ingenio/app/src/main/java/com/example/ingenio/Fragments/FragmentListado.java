@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,7 +50,7 @@ public class FragmentListado extends Fragment {
         recyclerView = view.findViewById(R.id.myList);
         recyclerView.addItemDecoration (new DividerItemDecoration(view.getContext (), DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator (new DefaultItemAnimator());
-        recyclerView.setLayoutManager (new LinearLayoutManager(view.getContext ()));
+        recyclerView.setLayoutManager (new GridLayoutManager(getActivity(),2));
 
         ingenioAdapter = new MyAdapter(view.getContext(),carreras,uerl, this.listener);
         recyclerView.setAdapter(ingenioAdapter);
