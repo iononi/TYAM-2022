@@ -36,13 +36,48 @@
 
             <FrameLayout
                 android:id="@+id/container"
-                android:layout_width="350dp"
+                android:layout_width="375dp"
                 android:layout_height="677dp"
-                android:layout_marginTop="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <RelativeLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="375dp"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <TextView
+                    android:id="@+id/textTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Herramientas"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textTitulo"
+                    android:text="Ingenieria"
+                    android:textColor="#FF6200EE"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="-20dp"
+                    android:layout_marginRight="0dp"
+                    android:src="@drawable/ingenio_fondo_blanco" />
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

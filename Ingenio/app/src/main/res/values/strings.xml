@@ -14,15 +14,28 @@
     <string-array name="carreras">
         <item>Ing. Informatica</item>
         <item>Ing. Industrial</item>
+        <item>Ing. Quimica</item>
+        <item>Ing. Electrica y Electronica</item>
+        <item>Ing. Mecatronica</item>
+        <item>Ing. Civil</item>
+
     </string-array>
 
     <string-array name="URL_Imagenes">
         <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_informatica.png?alt=media&amp;token=93925862-b211-42e4-832a-f5789ee9ee35</item>
         <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
     </string-array>
 
     <string-array name="detalles">
         <item>Esta ingenieria tiene que ver con las computadoras, tecnologias moviles, web, inteligencia artificial, entre otras cosas</item>
+        <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
+        <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
+        <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
+        <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
         <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
     </string-array>
 
