@@ -5,9 +5,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ingenio.Models.Users;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +30,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import com.example.ingenio.databinding.ActivityFormBinding;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -36,13 +45,15 @@ public class FormActivity extends AppCompatActivity {
     DatabaseReference users;
     private FirebaseAuth auth;
     FirebaseUser uid;
+    Uri uri;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance (); // obtiene la referencia a la BD
         users = database.getReference ("users"); // obtiene la referencia al nodo users
-
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         //printDatabaseChildren (users);
         binding = ActivityFormBinding.inflate (getLayoutInflater ());
         var registerView = binding.getRoot ();
@@ -100,18 +111,57 @@ public class FormActivity extends AppCompatActivity {
                 //aqui primero voy a registarme en FB, y luego recuperar el uid, el logueo viene hasta el final
                 //ya despues voy a actualizar la base de datos
 
-                //Si nos fijamos en la secuencia, primero registro al usuario, en caso de exito entonces recupero el uid
-                //y lo subo a la base de datos
-                //y asi ya puedo logearme
-                Users user = new Users (name, lastName, email, password, birthday, phoneNumber);
-                auth = FirebaseAuth.getInstance();
-                String contrasena = binding.edtPassword.getText ().toString ();
-                registerUser(email,contrasena, user);
+
                 if (!hasDefaultProfilePicture ()) {
                     // TODO: subir imagen a FB Storage
                     // si entra, significa que tomó foto con el cel, subir imagen a FB Storage
                     // user.setProfilePictureUrl (LINK_DE_STORAGE);
+                    ImageView iv = binding.ivProfilePic;
+                    StorageReference imagesFolder = storage.getReference ("/UsersFotos");
+                    StorageReference  image = imagesFolder.child (email);
+
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream ();
+                    Bitmap bitmap = getBitmapFromDrawable (iv.getDrawable ());
+                    bitmap.compress (Bitmap.CompressFormat.PNG, 100, bos);
+                    byte [] buffer = bos.toByteArray ();
+
+                    image.putBytes (buffer)
+                            .addOnFailureListener (e -> {
+                                Toast.makeText (getBaseContext (), "Error uploading file: " + e.getMessage (), Toast.LENGTH_LONG).show ();
+                                Log.e ("INGENIO", "Error uploading file: " + e.getMessage ());
+                            })
+                            .addOnCompleteListener (task -> {
+                                if (task.isComplete ()) {
+                                    Task<Uri> getUriTask = image.getDownloadUrl ();
+
+                                    getUriTask.addOnCompleteListener (t -> {
+                                        uri = t.getResult ();
+                                        if (uri == null) return;
+
+                                        //Si nos fijamos en la secuencia, primero registro al usuario, en caso de exito entonces recupero el uid
+                                        //y lo subo a la base de datos
+                                        //y asi ya puedo logearme
+                                        Users user = new Users (name, lastName, email, password, birthday, phoneNumber, uri.toString());
+                                        auth = FirebaseAuth.getInstance();
+                                        String contrasena = binding.edtPassword.getText ().toString ();
+                                        registerUser(email,contrasena, user);
+
+                                        //Toast.makeText (getBaseContext (), "Download URL " + uri.toString (), Toast.LENGTH_LONG).show ();
+                                        Log.i ("INGENIO", "Download URL " + uri.toString ());
+                                    });
+                                }
+                            });
                 }
+
+
+                //Si nos fijamos en la secuencia, primero registro al usuario, en caso de exito entonces recupero el uid
+                //y lo subo a la base de datos
+                //y asi ya puedo logearme
+                /*Users user = new Users (name, lastName, email, password, birthday, phoneNumber);
+                auth = FirebaseAuth.getInstance();
+                String contrasena = binding.edtPassword.getText ().toString ();
+                registerUser(email,contrasena, user);*/
+
                 // TODO: idear forma de crear claves únicas pues si dos usuarios se llaman igual
                 // lo sobreescribirá en lugar de crear uno nuevo (creo)
                 //saveNewUser (name.toLowerCase (), user);
@@ -235,5 +285,25 @@ public class FormActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(),"Usuario y/o contraseña no reconocida",Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private Bitmap getBitmapFromDrawable (Drawable drble) {
+        // debido a la forma que el sistema dibuja una imagen en un el sistema gráfico
+        // es necearios realzar comprobaciones para saber del tipo de objeto Drawable
+        // con que se está trabajando.
+        //
+        // si el objeto recibido es del tipo BitmapDrawable no se requieren más conversiones
+        if (drble instanceof BitmapDrawable) {
+            return  ((BitmapDrawable) drble).getBitmap ();
+        }
+
+        // en caso contrario, se crea un nuevo objeto Bitmap a partir del contenido
+        // del objeto Drawable
+        Bitmap bitmap = Bitmap.createBitmap (drble.getIntrinsicWidth (), drble.getIntrinsicHeight (), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drble.setBounds (0, 0, canvas.getWidth (), canvas.getHeight ());
+        drble.draw (canvas);
+
+        return bitmap;
     }
 }
