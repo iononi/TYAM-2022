@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ingenio.Models.Users;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,8 @@ public class FormActivity extends AppCompatActivity {
     ActivityFormBinding binding;
     FirebaseDatabase database;
     DatabaseReference users;
+    private FirebaseAuth auth;
+    FirebaseUser uid;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
@@ -93,6 +97,17 @@ public class FormActivity extends AppCompatActivity {
                 String birthday = binding.edtBirthday.getText ().toString ();
                 String phoneNumber = binding.edtTelephone.getText ().toString ();
 
+                //aqui primero voy a registarme en FB, y luego recuperar el uid, el logueo viene hasta el final
+                //ya despues voy a actualizar la base de datos
+
+                auth = FirebaseAuth.getInstance();
+                String contrasena = binding.edtPassword.getText ().toString ();
+                registerUser(email,contrasena);
+
+                //recuperar el uid
+                uid = FirebaseAuth.getInstance().getCurrentUser();
+
+
                 Users user = new Users (name, lastName, email, password, birthday, phoneNumber);
                 if (!hasDefaultProfilePicture ()) {
                     // TODO: subir imagen a FB Storage
@@ -101,8 +116,11 @@ public class FormActivity extends AppCompatActivity {
                 }
                 // TODO: idear forma de crear claves únicas pues si dos usuarios se llaman igual
                 // lo sobreescribirá en lugar de crear uno nuevo (creo)
-                saveNewUser (name.toLowerCase (), user); // guarda al usuario en la BD
+                //saveNewUser (name.toLowerCase (), user);
+                saveNewUser (uid.getUid(), user, email, contrasena); // guarda al usuario en la BD
                 // TODO: Crear perfil en FB con los datos ingresados e iniciar sesión
+
+
             }
         });
     }
@@ -165,7 +183,7 @@ public class FormActivity extends AppCompatActivity {
     /**
      * agrega un nuevo elemento a la rama users
      */
-    private void saveNewUser (String nodeName, Users newUser) {
+    private void saveNewUser (String nodeName, Users newUser, String email, String contrasena) {
         FirebaseDatabase database = FirebaseDatabase.getInstance ();
         DatabaseReference users = database.getReference ("users");
 
@@ -175,7 +193,47 @@ public class FormActivity extends AppCompatActivity {
         users.updateChildren (node)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText (getBaseContext (), "Ndde added successfully", Toast.LENGTH_LONG).show ();
+
                 })
                 .addOnFailureListener(e -> Toast.makeText (getBaseContext (), "Ndde add failed: " + e.getMessage (), Toast.LENGTH_LONG).show ());
+    }
+
+    private void registerUser (String email, String password) {
+        auth.createUserWithEmailAndPassword (email, password)
+                .addOnCompleteListener (task -> {
+                    if (task.isSuccessful ()) {
+                        Toast.makeText (getBaseContext(), "Register completed!", Toast.LENGTH_LONG).show ();
+                        //comentamos el login ya que todavia no queremos que cambie de contexto
+                        login (email, password);
+                    } else {
+                        if (task.getException () != null) {
+                            Log.e("ingenio", task.getException().getMessage());
+                        }
+
+                        Toast.makeText (getBaseContext(), "Register failed!", Toast.LENGTH_LONG).show ();
+                    }
+                });
+    }
+
+    private void login (String email, String password) {
+        auth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        FirebaseUser user = auth.getCurrentUser();
+                        String name = "";
+
+                        if(user != null){
+                            name = user.getDisplayName();
+                        }
+
+                        Toast.makeText(getBaseContext(),"Usuario" + name, Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getBaseContext(), PresentActivity.class);
+
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(),"Usuario y/o contraseña no reconocida",Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }
