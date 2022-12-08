@@ -141,7 +141,7 @@ public class FormActivity extends AppCompatActivity {
                                         //Si nos fijamos en la secuencia, primero registro al usuario, en caso de exito entonces recupero el uid
                                         //y lo subo a la base de datos
                                         //y asi ya puedo logearme
-                                        Users user = new Users (name, lastName, email, password, birthday, phoneNumber, uri.toString());
+                                        Users user = new Users (birthday, email, lastName, name, password, phoneNumber, uri.toString());
                                         auth = FirebaseAuth.getInstance();
                                         String contrasena = binding.edtPassword.getText ().toString ();
                                         registerUser(email,contrasena, user);

@@ -22,7 +22,7 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public Users (String name, String lastName, String email, int password, String birthday, String phoneNumber, String profilePictureUrl) {
+    public Users (String birthday, String email, String lastName, String name, int password, String phoneNumber, String profilePictureUrl) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
