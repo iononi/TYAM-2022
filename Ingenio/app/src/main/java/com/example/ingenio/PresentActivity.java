@@ -2,6 +2,7 @@ package com.example.ingenio;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -20,9 +21,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ingenio.Fragments.DetallesFragment;
 import com.example.ingenio.Fragments.FragmentListado;
+import com.example.ingenio.Models.Users;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PresentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -32,6 +39,8 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
     FirebaseUser currentUser;
     FirebaseAuth auth;
     String signInProvider;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,11 +61,39 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
             signInProvider = currentUser.getIdToken (false).getResult ().getSignInProvider ();
 
             assert signInProvider != null;
-            if (!signInProvider.equals ("anonymous")) {
+            if(!signInProvider.equals("google.com") && !signInProvider.equals("microsoft.com") && !signInProvider.equals("anonymous")){
+                //FirebaseDatabase basedatos;
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
+                Users users = new Users();
+                String uid = currentUser.getUid();
+                //DatabaseReference ref = reference.child(currentUser.getUid());
+                reference.child(uid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        /*for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            Log.d ("TAG", snapshot.getKey() + " - " +  snapshot.getValue ().toString());
+                            Users users = snapshot.getValue(Users.class);
+                        }*/
+
+
+                        //users.setName(String.valueOf(dataSnapshot.child("nombre").getValue()));
+                        tvNameBar.setText(String.valueOf(dataSnapshot.child("name").getValue()));
+                        tvEmailBar.setText(currentUser.getEmail());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+            else if (!signInProvider.equals ("anonymous")) {
                 tvNameBar.setText (currentUser. getDisplayName ());
                 tvEmailBar.setText (currentUser.getEmail ());
             }
         }
+
+
 
 
         //Tool bar
@@ -102,6 +139,11 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
                 .add(R.id.container,f)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
+
+
+        //hacer la consulta de la base de datos para recuperar datos
+
+
     }
 
     @Override
@@ -144,6 +186,13 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
         Intent mainActivity = new Intent(PresentActivity.this, MainActivity.class);
         startActivity(mainActivity);
         finish ();
+    }
+
+    private void getData(DataSnapshot dataSnapshot) {
+        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+            String name = ds.child("name").getValue(String.class);
+            Toast.makeText(getBaseContext(),"Nombre de usuario= "+name,Toast.LENGTH_LONG).show();
+        }
     }
 
 

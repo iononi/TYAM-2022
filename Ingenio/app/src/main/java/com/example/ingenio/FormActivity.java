@@ -100,15 +100,13 @@ public class FormActivity extends AppCompatActivity {
                 //aqui primero voy a registarme en FB, y luego recuperar el uid, el logueo viene hasta el final
                 //ya despues voy a actualizar la base de datos
 
+                //Si nos fijamos en la secuencia, primero registro al usuario, en caso de exito entonces recupero el uid
+                //y lo subo a la base de datos
+                //y asi ya puedo logearme
+                Users user = new Users (name, lastName, email, password, birthday, phoneNumber);
                 auth = FirebaseAuth.getInstance();
                 String contrasena = binding.edtPassword.getText ().toString ();
-                registerUser(email,contrasena);
-
-                //recuperar el uid
-                uid = FirebaseAuth.getInstance().getCurrentUser();
-
-
-                Users user = new Users (name, lastName, email, password, birthday, phoneNumber);
+                registerUser(email,contrasena, user);
                 if (!hasDefaultProfilePicture ()) {
                     // TODO: subir imagen a FB Storage
                     // si entra, significa que tomó foto con el cel, subir imagen a FB Storage
@@ -117,7 +115,7 @@ public class FormActivity extends AppCompatActivity {
                 // TODO: idear forma de crear claves únicas pues si dos usuarios se llaman igual
                 // lo sobreescribirá en lugar de crear uno nuevo (creo)
                 //saveNewUser (name.toLowerCase (), user);
-                saveNewUser (uid.getUid(), user, email, contrasena); // guarda al usuario en la BD
+                //saveNewUser (uid.getUid(), user); // guarda al usuario en la BD
                 // TODO: Crear perfil en FB con los datos ingresados e iniciar sesión
 
 
@@ -183,7 +181,7 @@ public class FormActivity extends AppCompatActivity {
     /**
      * agrega un nuevo elemento a la rama users
      */
-    private void saveNewUser (String nodeName, Users newUser, String email, String contrasena) {
+    private void saveNewUser (String nodeName, Users newUser) {
         FirebaseDatabase database = FirebaseDatabase.getInstance ();
         DatabaseReference users = database.getReference ("users");
 
@@ -198,12 +196,14 @@ public class FormActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText (getBaseContext (), "Ndde add failed: " + e.getMessage (), Toast.LENGTH_LONG).show ());
     }
 
-    private void registerUser (String email, String password) {
+    private void registerUser (String email, String password, Users user) {
         auth.createUserWithEmailAndPassword (email, password)
                 .addOnCompleteListener (task -> {
                     if (task.isSuccessful ()) {
                         Toast.makeText (getBaseContext(), "Register completed!", Toast.LENGTH_LONG).show ();
                         //comentamos el login ya que todavia no queremos que cambie de contexto
+
+                        saveNewUser (auth.getUid(), user);
                         login (email, password);
                     } else {
                         if (task.getException () != null) {
