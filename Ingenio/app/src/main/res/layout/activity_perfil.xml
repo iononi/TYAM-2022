@@ -73,7 +73,7 @@
 
     <EditText
         android:id="@+id/tvBirthday"
-        android:text="Birthday"
+        android:hint="dd/mm/aaaa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"

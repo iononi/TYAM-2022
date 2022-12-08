@@ -32,6 +32,15 @@ public class Users {
         this.profilePictureUrl = profilePictureUrl;
     }
 
+    public Users (String birthday, String email, String lastName, String name, String phoneNumber, String profilePictureUrl) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthday = birthday;
+        this.phoneNumber = phoneNumber;
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
     public String getName () {
         return name;
     }
