@@ -167,9 +167,14 @@ public class PresentActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.nav_profile:
-                Intent intent1 = new Intent(PresentActivity.this, PerfilActivity.class);
-                startActivity(intent1);
-                break;
+                if (signInProvider.equals ("anonymous")){
+                    Toast.makeText (PresentActivity.this, "No accesible para anonimos", Toast.LENGTH_SHORT).show ();
+                    break;
+                } else {
+                    Intent intent1 = new Intent(PresentActivity.this, PerfilActivity.class);
+                    startActivity(intent1);
+                    break;
+                }
 
             case R.id.nav_logout:
                 auth.signOut ();
