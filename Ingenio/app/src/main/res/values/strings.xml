@@ -21,6 +21,16 @@
 
     </string-array>
 
+    <string-array name="carrerasMod">
+        <item>Ing.Informatica</item>
+        <item>Ing.Industrial</item>
+        <item>Ing.Quimica</item>
+        <item>Ing.ElectricayElectronica</item>
+        <item>Ing.Mecatronica</item>
+        <item>Ing.Civil</item>
+
+    </string-array>
+
     <string-array name="URL_Imagenes">
         <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_informatica.png?alt=media&amp;token=93925862-b211-42e4-832a-f5789ee9ee35</item>
         <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
@@ -37,6 +47,98 @@
         <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
         <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
         <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
+    </string-array>
+
+    <string-array name="Ing.Informatica">
+        <item>java(1)</item>
+        <item>java(2)</item>
+        <item>java(3)</item>
+        <item>java(4)</item>
+        <item>java(5)</item>
+        <item>java(6)</item>
+    </string-array>
+
+    <string-array name="Ing.Informatica1">
+        <item>pyhton(1)</item>
+        <item>pyhton(2)</item>
+        <item>pyhton(3)</item>
+        <item>pyhton(4)</item>
+        <item>pyhton(5)</item>
+        <item>pyhton(6)</item>
+    </string-array>
+
+    <string-array name="Ing.Industrial">
+        <item>administracion(1)</item>
+        <item>administracion(2)</item>
+        <item>administracion(3)</item>
+        <item>administracion(4)</item>
+        <item>administracion(5)</item>
+        <item>administracion(6)</item>
+        <item>administracion(7)</item>
+    </string-array>
+
+    <string-array name="Ing.Industrial1">
+        <item>facil(1)</item>
+        <item>facil(2)</item>
+        <item>facil(3)</item>
+        <item>facil(4)</item>
+        <item>facil(5)</item>
+        <item>facil(6)</item>
+        <item>facil(7)</item>
+    </string-array>
+
+    <string-array name="Ing.Quimica">
+        <item>pociones(1)</item>
+        <item>pociones(2)</item>
+        <item>pociones(3)</item>
+    </string-array>
+
+    <string-array name="Ing.Quimica1">
+        <item>mas(1)</item>
+        <item>mas(2)</item>
+        <item>mas(3)</item>
+    </string-array>
+
+    <string-array name="Ing.ElectricayElectronica">
+        <item>transis(1)</item>
+        <item>transis(2)</item>
+    </string-array>
+
+    <string-array name="Ing.ElectricayElectronica1">
+        <item>DIFICIL(1)</item>
+        <item>DIFICIL(2)</item>
+    </string-array>
+
+    <string-array name="Ing.Mecatronica">
+        <item>Robotica(1)</item>
+        <item>Robotica(2)</item>
+        <item>Robotica(3)</item>
+        <item>Robotica(4)</item>
+        <item>Robotica(5)</item>
+    </string-array>
+
+    <string-array name="Ing.Mecatronica1">
+        <item>Dificil(1)</item>
+        <item>Dificil(2)</item>
+        <item>Dificil(3)</item>
+        <item>Dificil(4)</item>
+        <item>Dificil(5)</item>
+    </string-array>
+
+    <string-array name="Ing.Civil">
+        <item>Concreto(1)</item>
+        <item>Concreto(2)</item>
+        <item>Concreto(3)</item>
+        <item>Concreto(4)</item>
+        <item>Concreto(5)</item>
+    </string-array>
+
+    <string-array name="Ing.Civil1">
+        <item>Aburrido(1)</item>
+        <item>Aburrido(2)</item>
+        <item>Aburrido(3)</item>
+        <item>Aburrido(4)</item>
+        <item>Aburrido(5)</item>
     </string-array>
 
 </resources>
