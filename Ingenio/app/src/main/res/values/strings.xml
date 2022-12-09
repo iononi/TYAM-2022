@@ -32,12 +32,12 @@
     </string-array>
 
     <string-array name="URL_Imagenes">
-        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_informatica.png?alt=media&amp;token=93925862-b211-42e4-832a-f5789ee9ee35</item>
-        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
-        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
-        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
-        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
-        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=bf9542c4-5ca7-41b3-8e1c-1d7e9fc8e2e1</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_informatica.png?alt=media&amp;token=07abfc09-47e6-4317-9d30-933bca8688d4</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_industrial.png?alt=media&amp;token=fa938d56-4a84-4e17-b14c-7c60bbe40c08</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_quimica.png?alt=media&amp;token=420a3a7b-e8b0-4d8c-937f-6a11d4dbf2ec</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_elec_elect.png?alt=media&amp;token=58cd5a2f-cdcf-4f18-914c-eb0a6b38a746</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_mecatronica.png?alt=media&amp;token=5e522e84-da1a-444e-a335-e14ff1e87a1f</item>
+        <item>https://firebasestorage.googleapis.com/v0/b/ingenio-dcf81.appspot.com/o/PresentAct%2Fing_civil.png?alt=media&amp;token=9aedb1f5-3edb-4147-8876-c9b9a1fd22cf</item>
     </string-array>
 
     <string-array name="detalles">
