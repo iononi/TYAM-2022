@@ -55,12 +55,16 @@ public class DetallesFragment extends Fragment {
         //Con esto sabemos de que carrera estamos hablando
         String Carrera = carrerasArray[position];
 
+        String [] TituloCarreArray;
+        List<String> TituloCarre;
         String [] tituloArray;
         List<String> titulo;
         String [] descripcionArray;
         List<String> descripcion;
 
         if(Carrera.equals("Ing.Informatica")){
+            TituloCarreArray = activity.getResources().getStringArray(R.array.Titulo_Informatica);
+            TituloCarre = Arrays.asList(TituloCarreArray);
             tituloArray = activity.getResources().getStringArray(R.array.Ing_Informatica);
             titulo = Arrays.asList(tituloArray);
             descripcionArray = activity.getResources().getStringArray(R.array.Ing_Informatica1);
@@ -71,10 +75,12 @@ public class DetallesFragment extends Fragment {
             recyclerView.setItemAnimator (new DefaultItemAnimator());
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext ()));
 
-            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion);
+            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion, TituloCarre);
             recyclerView.setAdapter(DetallesAdapter);
         }
         if(Carrera.equals("Ing.Industrial")){
+            TituloCarreArray = activity.getResources().getStringArray(R.array.Titulo_Industrial);
+            TituloCarre = Arrays.asList(TituloCarreArray);
             tituloArray = activity.getResources().getStringArray(R.array.Ing_Industrial);
             titulo = Arrays.asList(tituloArray);
             descripcionArray = activity.getResources().getStringArray(R.array.Ing_Industrial1);
@@ -85,10 +91,12 @@ public class DetallesFragment extends Fragment {
             recyclerView.setItemAnimator (new DefaultItemAnimator());
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext ()));
 
-            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion);
+            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion, TituloCarre);
             recyclerView.setAdapter(DetallesAdapter);
         }
         if(Carrera.equals("Ing.Quimica")){
+            TituloCarreArray = activity.getResources().getStringArray(R.array.Titulo_Quimica);
+            TituloCarre = Arrays.asList(TituloCarreArray);
             tituloArray = activity.getResources().getStringArray(R.array.Ing_Quimica);
             titulo = Arrays.asList(tituloArray);
             descripcionArray = activity.getResources().getStringArray(R.array.Ing_Quimica1);
@@ -99,10 +107,12 @@ public class DetallesFragment extends Fragment {
             recyclerView.setItemAnimator (new DefaultItemAnimator());
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext ()));
 
-            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion);
+            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion, TituloCarre);
             recyclerView.setAdapter(DetallesAdapter);
         }
         if(Carrera.equals("Ing.ElectricayElectronica")){
+            TituloCarreArray = activity.getResources().getStringArray(R.array.Titulo_ElectricayElectronicca);
+            TituloCarre = Arrays.asList(TituloCarreArray);
             tituloArray = activity.getResources().getStringArray(R.array.Ing_ElectricayElectronica);
             titulo = Arrays.asList(tituloArray);
             descripcionArray = activity.getResources().getStringArray(R.array.Ing_ElectricayElectronica1);
@@ -113,10 +123,12 @@ public class DetallesFragment extends Fragment {
             recyclerView.setItemAnimator (new DefaultItemAnimator());
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext ()));
 
-            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion);
+            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion, TituloCarre);
             recyclerView.setAdapter(DetallesAdapter);
         }
         if(Carrera.equals("Ing.Mecatronica")){
+            TituloCarreArray = activity.getResources().getStringArray(R.array.Titulo_Mecatronica);
+            TituloCarre = Arrays.asList(TituloCarreArray);
             tituloArray = activity.getResources().getStringArray(R.array.Ing_Mecatronica);
             titulo = Arrays.asList(tituloArray);
             descripcionArray = activity.getResources().getStringArray(R.array.Ing_Mecatronica1);
@@ -127,10 +139,12 @@ public class DetallesFragment extends Fragment {
             recyclerView.setItemAnimator (new DefaultItemAnimator());
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext ()));
 
-            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion);
+            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion, TituloCarre);
             recyclerView.setAdapter(DetallesAdapter);
         }
         if(Carrera.equals("Ing.Civil")){
+            TituloCarreArray = activity.getResources().getStringArray(R.array.Titulo_Civil);
+            TituloCarre = Arrays.asList(TituloCarreArray);
             tituloArray = activity.getResources().getStringArray(R.array.Ing_Civil);
             titulo = Arrays.asList(tituloArray);
             descripcionArray = activity.getResources().getStringArray(R.array.Ing_Civil1);
@@ -141,7 +155,7 @@ public class DetallesFragment extends Fragment {
             recyclerView.setItemAnimator (new DefaultItemAnimator());
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext ()));
 
-            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion);
+            DetallesAdapter = new MiAdaptador(view.getContext(), titulo, descripcion, TituloCarre);
             recyclerView.setAdapter(DetallesAdapter);
         }
 
@@ -170,13 +184,15 @@ public class DetallesFragment extends Fragment {
 
 class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MiViewHolder>{
     private Context context;
+    private List<String> TituloCarre;
     private List<String> titulo;
     private List<String> descripcion;
 
-    MiAdaptador(Context context, List<String> titulo, List<String> descripcion){
+    MiAdaptador(Context context, List<String> titulo, List<String> descripcion, List<String> TituloCarre){
         this.context = context;
         this.titulo = titulo;
         this.descripcion = descripcion;
+        this.TituloCarre = TituloCarre;
     }
 
     @NonNull
@@ -190,7 +206,7 @@ class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MiViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MiViewHolder holder, int position) {
-        holder.setData(titulo.get(position), descripcion.get(position));
+        holder.setData(titulo.get(position), descripcion.get(position), TituloCarre.get(position));
     }
 
     @Override
@@ -201,16 +217,19 @@ class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MiViewHolder>{
     class MiViewHolder extends RecyclerView.ViewHolder{
         private TextView titulo;
         private TextView descripcion;
+        private TextView TituloCarre;
 
         MiViewHolder(@NonNull View itemView){
             super(itemView);
             titulo = itemView.findViewById(R.id.tvTitle);
             descripcion = itemView.findViewById(R.id.tvDescription);
+            TituloCarre = itemView.findViewById(R.id.tvTitulo);
         }
 
-        void setData(String data1, String data2){
+        void setData(String data1, String data2, String data3){
             titulo.setText(data1);
             descripcion.setText(data2);
+            TituloCarre.setText(data3);
         }
     }
 }

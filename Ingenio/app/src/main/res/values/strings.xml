@@ -49,96 +49,206 @@
         <item>Ingenieria dirigida a resolver problemas de administradores con casco</item>
     </string-array>
 
+    
+    <string-array name="Titulo.Informatica">
+        <item>TeamViewer para Android</item>
+        <item>ConnectBot</item>
+        <item>Acode</item>
+        <item>AndFTPAndFTP</item>
+        <item>RemoDB</item>
+        <item>Es File Explorer</item>
+        <item>Network Analyzer</item>
+        <item>WPS Office</item>
+    </string-array>
+    
     <string-array name="Ing.Informatica">
-        <item>java(1)</item>
-        <item>java(2)</item>
-        <item>java(3)</item>
-        <item>java(4)</item>
-        <item>java(5)</item>
-        <item>java(6)</item>
+        <item>Posibilita la conexión a tu pc a través del escritorio remoto.</item>
+        <item>Conexión por SSH a cualquier maquina remota y manejo por la línea de comandos.</item>
+        <item>Editor de código para Android. Soporta diferentes lenguajes como PHP, HTML, Java, JavaScript, C++, C# y Ruby.</item>
+        <item>Conectarte a tus servidores FTP, FTPS, SCP y SCP. Es práctico para acceder a tus archivos externos o subir desde tu móvil algún contenido que necesites en tu página web.</item>
+        <item>Acceso a una base de datos desde el móvil. Permite conectarse a una base de datos MS SQL, MySQL, PostgreSQL o Sybase. </item>
+        <item>Exploradores de archivos, usar conexiones por la red local FTP y bluetooth, con lo que podrás montar directorios de otra PC o Mac que tenga archivos compartidos en una LAN.</item>
+        <item>Diagnosticar varios problemas en la configuración de su red wifi, conectividad a Internet y también detectar varios problemas en servidores remotos gracias a la amplia gama de herramientas que proporciona.</item>
+        <item>Esta aplicación es fundamental para cualquiera que necesite trabajar con su smartphone o Tablet. Te permite ver o editar documentos Word, Excel, PDF &amp; PowerPoint.</item>
     </string-array>
 
     <string-array name="Ing.Informatica1">
-        <item>pyhton(1)</item>
-        <item>pyhton(2)</item>
-        <item>pyhton(3)</item>
-        <item>pyhton(4)</item>
-        <item>pyhton(5)</item>
-        <item>pyhton(6)</item>
+        <item>https://www.teamviewer.com/es-mx/descarga/android/</item>
+        <item>https://play.google.com/store/apps/details?id=org.connectbot&amp;hl=es&amp;gl=US&amp;pli=1</item>
+        <item>https://play.google.com/store/apps/details?id=com.foxdebug.acodefree</item>
+        <item>https://play.google.com/store/apps/details?id=lysesoft.andftp&amp;hl=es&amp;gl=US</item>
+        <item>https://play.google.com/store/apps/details?id=com.kriskast.remotedb&amp;hl=es&amp;gl=US</item>
+        <item>https://play.google.com/store/apps/details?id=com.foxdebug.acodefree</item>
+        <item>https://play.google.com/store/apps/details?id=com.vrem.wifianalyzer&amp;hl=es&amp;gl=US</item>
+        <item>https://play.google.com/store/apps/details?id=cn.wps.moffice_eng&amp;hl=es&amp;gl=US</item>
+    </string-array>
+
+
+
+    <string-array name="Titulo.Industrial">
+        <item>Safesite</item>
+        <item>Reforma Simples</item>
+        <item>MyScript Calculator</item>
+        <item>Co-Construct</item>
+        <item>iCircuit</item>
+        <item>Evernote</item>
+        <item>AutoCAD 360</item>
+        <item>Sun Seeker</item>
     </string-array>
 
     <string-array name="Ing.Industrial">
-        <item>administracion(1)</item>
-        <item>administracion(2)</item>
-        <item>administracion(3)</item>
-        <item>administracion(4)</item>
-        <item>administracion(5)</item>
-        <item>administracion(6)</item>
-        <item>administracion(7)</item>
+        <item>Permite identificar y corregir problemas para prevenir accidentes.</item>
+        <item>Calcula la cantidad de material necesario y los valores estimados, a partir de una lista de precios actualizada por SINAPI.</item>
+        <item>Dibujas los números sobre la pantalla del celular o de la tablet y la app transcribe la operación y la resuelve de inmediato.</item>
+        <item>Establece la comunicación entre los integrantes del proyecto y los clientes y también ayuda en la gestión de tiempo, comparativo de precios y elaboración de presupuestos.</item>
+        <item>iCircuit es un buen simulador y diseñador de circuitos y componentes.</item>
+        <item>La app permite que hagas innumerables anotaciones, captures imágenes, guarde ideas, notas, lista de tareas y lo que consideres necesario. ¡Es una excelente herramienta para gestionar información!</item>
+        <item>La visualización y la edición de los proyectos.</item>
+        <item>Por medio de geoposicionamiento, de la brújula y de la cámara, muestra la posición del sol en cualquier momento, incluso estando dentro de la construcción.</item>
     </string-array>
 
     <string-array name="Ing.Industrial1">
-        <item>facil(1)</item>
-        <item>facil(2)</item>
-        <item>facil(3)</item>
-        <item>facil(4)</item>
-        <item>facil(5)</item>
-        <item>facil(6)</item>
-        <item>facil(7)</item>
+        <item>https://play.google.com/store/apps/details?id=com.safesitecheckin.checkin&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.matiasmx.architecture&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.myscript.calculator&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.co_construct.htmlapp&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.kruegersystems.circuitdroid&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.evernote&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.autodesk.a360&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.ajnaware.sunseeker&amp;hl=es_GT</item>
+    </string-array>
+
+    <string-array name="Titulo.Quimica">
+        <item>GnumeriC</item>
+        <item>Octave</item>
+        <item>Freemat</item>
+        <item>Scilab</item>
+        <item>Uconeer</item>
+        <item>DIA</item>
+        <item>INKSCAPE</item>
+        <item>COCO</item>
     </string-array>
 
     <string-array name="Ing.Quimica">
-        <item>pociones(1)</item>
-        <item>pociones(2)</item>
-        <item>pociones(3)</item>
+        <item>Planilla de cálculo en lugar de un paquete office completo, una alternativa es Gnumeric.</item>
+        <item>Resuelven problemas numéricos como matlab.</item>
+        <item>Otra alternativa al Matlab es el software FreeMat, que dispone de la mayoría de las funciones de Matlab.</item>
+        <item>Es un software de código abierto para computación numérica.</item>
+        <item>La aplicación más clásica para conversión de unidades es Uconeer. Es un programa pequeño (0.5 Mb) pero muy completo.</item>
+        <item>Programa para diseñar diagramas, que incorpora una biblioteca específica de equipos de procesos químicos.</item>
+        <item>Inkscape se utiliza para diseño vectorial. Para complementarlo, Emilio Tozzi ha desarrollado una librería de imágenes de procesos químicos para agregarle.</item>
+        <item>Es un simulador secuencial gratuito, de estado estacionario.</item>
     </string-array>
 
     <string-array name="Ing.Quimica1">
-        <item>mas(1)</item>
-        <item>mas(2)</item>
-        <item>mas(3)</item>
+        <item>projects.gnome.org/gnumeric/downloads.shtml</item>
+        <item>https://sourceforge.net/projects/octave/</item>
+        <item>http://freemat.sourceforge.net/</item>
+        <item>www.scilab.org</item>
+        <item>www.katmarsoftware.com/uconeer.htm#download</item>
+        <item>www.dia-installer.de</item>
+        <item>inkscape.org/download/</item>
+        <item>www.cocosimulator.org/index_download.html</item>
     </string-array>
 
+    <string-array name="Titulo.ElectricayElectronicca">
+        <item>Electrical Formulator</item>
+        <item>Metal Prices</item>
+        <item>Electrical Calculations lite</item>
+        <item>Two Thirty Volts</item>
+        <item>Costes de Energía-Calc</item>
+        <item>Ley de Ohm-Calc</item>
+        <item>Caida de tensión-Calc</item>
+        <item>EveryCircuit</item>
+    </string-array>
+
+
     <string-array name="Ing.ElectricayElectronica">
-        <item>transis(1)</item>
-        <item>transis(2)</item>
+        <item>Nos permite resolver cualquier problema de diseño eléctrico con cientos de conversiones y fórmulas de cálculo.</item>
+        <item>Información sobre los precios del cobre y de aluminio, según el precio de cierre del London Metal Exchange y el German Electrolytic High-Conductivity Copper (DEL).</item>
+        <item>La aplicación de cálculos eléctricos más completa, sencilla y fácil de usar.</item>
+        <item>Tiene como objetivo reducir los riesgos de los accidentes eléctricos laborales y domésticos.</item>
+        <item>Calcula por días, semanas, meses o año los costes de los equipos eléctricos o maquinaria.</item>
+        <item>Calculos de voltaje, corriente, resistencia y potencia. Incluye fórmulas y unidades múltiples.</item>
+        <item>Determina la caída de tensión para la selección del cable más adecuado.</item>
+        <item>Construye cualquier circuito, toque el botón de reproducción y vea las animaciones dinámicas de voltaje, corriente y carga.</item>
     </string-array>
 
     <string-array name="Ing.ElectricayElectronica1">
-        <item>DIFICIL(1)</item>
-        <item>DIFICIL(2)</item>
+        <item>https://play.google.com/store/apps/details?id=it.Ettore.calcolielettrici&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=cat.dimo.topcablemetalprices&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=calculation.world.electricalcalculationapp&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.procerts.wattsampsvolts&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.sis.EnergyCostCalculator&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.ohm.ec.ohmslawcalculatorpracticeexamples&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.sis.voltagedropcalculator&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.everycircuit.free&amp;hl=es_GT</item>
+    </string-array>
+
+    <string-array name="Titulo.Mecatronica">
+        <item>Photo Measures</item>
+        <item>Ingeniería electronica app</item>
+        <item>Mechatronics Engineering</item>
+        <item>Ingenieria Mecanica</item>
+        <item>Mimo: Aprende a programar/code</item>
+        <item>Herramientas Inteligentes</item>
+        <item>PDF: Utils: Fusionar y dividir</item>
+        <item>Trello</item>
     </string-array>
 
     <string-array name="Ing.Mecatronica">
-        <item>Robotica(1)</item>
-        <item>Robotica(2)</item>
-        <item>Robotica(3)</item>
-        <item>Robotica(4)</item>
-        <item>Robotica(5)</item>
+        <item>Con esta aplicación podrá tomar diferentes medidas en cualquier espacio, solo tomando una foto. Le ahorra tiempo y solo tiene que hacer uso de su cámara.</item>
+        <item>La aplicación contiene la sección de referencia de componentes electrónicos, la sección de referencia de circuito electrónico y la sección de cálculo de circuito electrónico.</item>
+        <item>Se enfoca en la ingeniería de sistemas eléctricos y mecánicos, y también incluye una combinación de robótica, electrónica, computación, telecomunicaciones, sistemas, control e ingeniería de producto.</item>
+        <item>La aplicación contiene la descripción de la construcción de maquinaria y de equipo necesario para poder utilizarla.</item>
+        <item>Avanza en tu carrera, crea aplicaciones y sitios web, o conviértete en desarrollador. Con Mimo, aprende a programar, la habilidad del siglo, dedicándole unos minutos.</item>
+        <item>Herramientas Inteligentes es un práctico kit de herramientas con más de 40. Utilice los sensores integrados del dispositivo en una aplicación de caja de herramientas todo en uno, útil como una navaja suiza.</item>
+        <item>Utilidad de PDF liviana completamente gratuita dedicada para dispositivos móviles que funciona completamente sin conexión. Fácil de usar con las siguientes funciones para modificar y crear archivos PDF.</item>
+        <item>Trello es el compañero que necesita para llevar a cabo las tareas y organizarse.</item>
     </string-array>
 
     <string-array name="Ing.Mecatronica1">
-        <item>Dificil(1)</item>
-        <item>Dificil(2)</item>
-        <item>Dificil(3)</item>
-        <item>Dificil(4)</item>
-        <item>Dificil(5)</item>
+        <item>https://play.google.com/store/apps/details?id=com.bigbluepixel.photomeasures.lite&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.saulawa.anas.electronics_tollbox</item>
+        <item>https://play.google.com/store/apps/details?id=in.softecks.mechatronicsengineering&amp;hl=es_GT</item>
+        <item>https://play.google.com/store/apps/details?id=com.kirlanik1403</item>
+        <item>https://play.google.com/store/apps/details?id=com.getmimo</item>
+        <item>https://play.google.com/store/apps/details?id=com.pcmehanik.smarttoolbox</item>
+        <item>https://play.google.com/store/apps/details?id=pdf.shash.com.pdfutility</item>
+        <item>https://play.google.com/store/apps/details?id=com.trello</item>
+    </string-array>
+
+    <string-array name="Titulo.Civil">
+        <item>Autocad – Editor DWG</item>
+        <item>UCPro – Unidad de Conversión</item>
+        <item>RealCalc Plus</item>
+        <item>EveryCircuit</item>
+        <item>TurboViewer</item>
+        <item>BeamDesign</item>
+        <item>SW FEA 2D Frame Analysis</item>
+        <item>Celosías Paramétricas</item>
     </string-array>
 
     <string-array name="Ing.Civil">
-        <item>Concreto(1)</item>
-        <item>Concreto(2)</item>
-        <item>Concreto(3)</item>
-        <item>Concreto(4)</item>
-        <item>Concreto(5)</item>
+        <item>Diseño de planos en 2D ahora disponible para dispositivos móviles. Ideal para visitar la obra, y revisar los procesos constructivos junto a los planos según sean las especialidades.</item>
+        <item>Para un ingeniero civil es indispensable tener un convertidor de unidades.</item>
+        <item>Calculadora científica de alta calidad.</item>
+        <item>La aplicación definitiva para crear cualquier circuito eléctrico, y una delicia para los ojos de cualquier profesional o persona amante de las instalaciones eléctricas.</item>
+        <item>Es una aplicación gratuita que soporta archivos en 2D y 3D en la mayoría de los formatos que existen hoy en el mercado.</item>
+        <item>Esta app nos soluciona la vida en cuanto a cálculos rápidos de vigas para su respectivo diseño.</item>
+        <item>Calculo de pórticos y vigas, y te gusta el modo oscuro de los celulares o del propio AutoCad, esta app es para ti.</item>
+        <item>Con esta app crearás fácilmente celosías mediante la combinación de hasta 35 parámetros y además, mostrará la influencia de las cargas en cada barra o nodo según sea su comportamiento estructural.</item>
     </string-array>
 
     <string-array name="Ing.Civil1">
-        <item>Aburrido(1)</item>
-        <item>Aburrido(2)</item>
-        <item>Aburrido(3)</item>
-        <item>Aburrido(4)</item>
-        <item>Aburrido(5)</item>
+        <item>https://play.google.com/store/apps/details?id=com.autodesk.autocadws</item>
+        <item>https://play.google.com/store/apps/details?id=com.unitconverterpro.ucp</item>
+        <item>https://play.google.com/store/apps/details?id=uk.co.nickfines.RealCalc</item>
+        <item>https://play.google.com/store/apps/details?id=com.everycircuit.free</item>
+        <item>https://play.google.com/store/apps/details?id=com.gstarmc.android</item>
+        <item>https://play.google.com/store/apps/details?id=nl.letsconstruct.beamdesign</item>
+        <item>https://play.google.com/store/apps/details?id=np.com.softwel.swframe2d</item>
+        <item>https://play.google.com/store/apps/details?id=com.fhm.parametrictrusses</item>
     </string-array>
 
 </resources>
